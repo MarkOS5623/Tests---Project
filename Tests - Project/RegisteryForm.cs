@@ -92,5 +92,17 @@ namespace Tests___Project
             }
             return flag;
         }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void ClearButton_Click(object sender, EventArgs e)
+        {
+            UsernameBox.Text = "";
+            PasswordBox.Text = "";
+            IDBox.Text = "";
+        }
     }
 }

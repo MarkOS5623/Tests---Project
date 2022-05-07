@@ -48,6 +48,7 @@
             this.BackButton.TabIndex = 13;
             this.BackButton.Text = "Back";
             this.BackButton.UseVisualStyleBackColor = true;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // RegisterButton
             // 
@@ -120,6 +121,7 @@
             this.ClearButton.TabIndex = 16;
             this.ClearButton.Text = "Clear";
             this.ClearButton.UseVisualStyleBackColor = true;
+            this.ClearButton.Click += new System.EventHandler(this.ClearButton_Click);
             // 
             // RegisteryForm
             // 

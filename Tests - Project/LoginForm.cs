@@ -12,15 +12,18 @@ namespace Tests___Project
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-            OpenFile();
+            Excel ex = new Excel();
+            ex.CreateNewFile();
+            ex.CreateNewSheet();
+            ex.SaveAs(@"Data");
+            ex.Close();
+            
         }
 
         public void OpenFile()
         {
-            Excel excel = new Excel(@"C:\Users\marko\source\repos\Tests - Project\Tests - Project\TEST.xlsx", 1);
-            excel.WriteToCell(0, 1, "Beans");
-            excel.Save();
-            MessageBox.Show(excel.ReadCell(0, 1));
+            Excel excel = new Excel(@"Data.xlsx", 1);
+            excel.Close();
         }
         private void UsernameBox_TextChanged(object sender, EventArgs e)
         {
@@ -37,8 +40,26 @@ namespace Tests___Project
 
         private void RegisterButton_Click(object sender, EventArgs e)
         {
-            RegisteryForm f2 = new RegisteryForm();
-            f2.ShowDialog();
+            RegisteryForm f = new RegisteryForm();
+            f.ShowDialog();
+        }
+
+        private void LoginButton_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < DoctorList.Count; i++)
+            {
+                if (UsernameBox.Text == DoctorList[i].getUsername()) { 
+                    if(PasswordBox.Text == DoctorList[i].getPassword())
+                    {
+                        MainPage f = new MainPage();
+                        UsernameBox.Text = "";
+                        PasswordBox.Text = "";
+                        f.ShowDialog();
+                    }
+                    else MessageBox.Show("Incorrect password!!");
+                }
+                else MessageBox.Show("Incorrect username!!");
+            }
         }
     }
 }
