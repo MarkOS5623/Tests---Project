@@ -10,11 +10,18 @@ namespace Tests___Project
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void LoginForm_Load(object sender, EventArgs e)
         {
-
+            OpenFile();
         }
 
+        public void OpenFile()
+        {
+            Excel excel = new Excel(@"C:\Users\marko\source\repos\Tests - Project\Tests - Project\TEST.xlsx", 1);
+            excel.WriteToCell(0, 1, "Beans");
+            excel.Save();
+            MessageBox.Show(excel.ReadCell(0, 1));
+        }
         private void UsernameBox_TextChanged(object sender, EventArgs e)
         {
 
