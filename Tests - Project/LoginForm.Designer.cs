@@ -40,26 +40,26 @@
             // Username
             // 
             this.Username.AutoSize = true;
-            this.Username.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Username.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.Username.Location = new System.Drawing.Point(326, 170);
             this.Username.Name = "Username";
-            this.Username.Size = new System.Drawing.Size(165, 38);
+            this.Username.Size = new System.Drawing.Size(133, 32);
             this.Username.TabIndex = 0;
             this.Username.Text = "Username";
             // 
             // Password
             // 
             this.Password.AutoSize = true;
-            this.Password.Font = new System.Drawing.Font("Times New Roman", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.Password.Location = new System.Drawing.Point(326, 232);
+            this.Password.Font = new System.Drawing.Font("Times New Roman", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.Password.Location = new System.Drawing.Point(326, 231);
             this.Password.Name = "Password";
-            this.Password.Size = new System.Drawing.Size(156, 38);
+            this.Password.Size = new System.Drawing.Size(129, 32);
             this.Password.TabIndex = 1;
             this.Password.Text = "Password";
             // 
             // UsernameBox
             // 
-            this.UsernameBox.Location = new System.Drawing.Point(497, 181);
+            this.UsernameBox.Location = new System.Drawing.Point(461, 176);
             this.UsernameBox.Name = "UsernameBox";
             this.UsernameBox.Size = new System.Drawing.Size(149, 27);
             this.UsernameBox.TabIndex = 2;
@@ -67,7 +67,7 @@
             // 
             // PasswordBox
             // 
-            this.PasswordBox.Location = new System.Drawing.Point(497, 243);
+            this.PasswordBox.Location = new System.Drawing.Point(461, 231);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.Size = new System.Drawing.Size(149, 27);
             this.PasswordBox.TabIndex = 3;
@@ -75,7 +75,7 @@
             // LoginButton
             // 
             this.LoginButton.Font = new System.Drawing.Font("Times New Roman", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.LoginButton.Location = new System.Drawing.Point(533, 293);
+            this.LoginButton.Location = new System.Drawing.Point(501, 293);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(113, 37);
             this.LoginButton.TabIndex = 4;
@@ -91,6 +91,7 @@
             this.RegisterButton.TabIndex = 5;
             this.RegisterButton.Text = "Register";
             this.RegisterButton.UseVisualStyleBackColor = true;
+            this.RegisterButton.Click += new System.EventHandler(this.RegisterButton_Click);
             // 
             // ExitButton
             // 
@@ -101,6 +102,7 @@
             this.ExitButton.TabIndex = 6;
             this.ExitButton.Text = "Exit";
             this.ExitButton.UseVisualStyleBackColor = true;
+            this.ExitButton.Click += new System.EventHandler(this.ExitButton_Click);
             // 
             // LoginForm
             // 
