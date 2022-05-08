@@ -36,14 +36,14 @@ namespace Tests___Project
         {
             col++;
             row++;
-            if (_Ws.Cells[col, row].Value2 != null) return _Ws.Cells[row, col].Value2;
+            if (_Ws.Cells[col, row].Value2 != null) return _Ws.Cells[col, row].Value2;
             else return "";
         }
         public void WriteToCell(int col, int row, String s)
         {
             col++;
             row++;
-            _Ws.Cells[row, col].Value2 = s;
+            _Ws.Cells[col, row].Value2 = s;
         }
         public void Save()
         {
