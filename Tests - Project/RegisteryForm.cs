@@ -21,6 +21,7 @@ namespace Tests___Project
         private void RegisterButton_Click(object sender, EventArgs e)
         {
             int index;
+            LoginForm f = new LoginForm();
             if (UsernameBox.Text == "" || PasswordBox.Text == "" || IDBox.Text == "")
                 MessageBox.Show("Please fill the whole form.");
             else
@@ -28,12 +29,11 @@ namespace Tests___Project
                 Doctor General = new Doctor(UsernameBox.Text, PasswordBox.Text, IDBox.Text);
                 if (this.inputTester())
                 {
+                    this.Hide();
                     LoginForm.DoctorList.Add(General);
                     index = LoginForm.DoctorList.Count - 1;
-                    LoginForm.WriteToExcel(index, 0, UsernameBox.Text);
-                    LoginForm.WriteToExcel(index, 1, PasswordBox.Text);
-                    LoginForm.WriteToExcel(index, 2, IDBox.Text);
-                    this.Close();
+                    f.Closed += (s, args) => this.Close();
+                    f.Show();
                 }
             }
         }
