@@ -12,6 +12,7 @@ namespace Tests___Project
 {
     public partial class MainPage : Form
     {
+        public static List<Patient> PatientList = new List<Patient>();
         Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
