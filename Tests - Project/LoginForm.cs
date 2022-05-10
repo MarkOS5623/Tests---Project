@@ -7,6 +7,7 @@ namespace Tests___Project
         public LoginForm()
         {
             DoctorList = new List<Doctor>();
+            DoctorList.Add(new Doctor("Markos56","Markos56!","315126201"));
             InitializeComponent();
         }
 

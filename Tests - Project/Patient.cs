@@ -16,6 +16,7 @@ namespace Tests___Project
         private float _Age;
         private float _Weight;
         private float _Height;
+        private BloodTest _results;
         public Patient()
         {
             _Fname = "John";
@@ -26,6 +27,7 @@ namespace Tests___Project
             _Age = 0;
             _Weight = 0;
             _Height = 0;
+            _results = new BloodTest();
         }
         public Patient(String fname, String lname, String id, String bp, String ill, float age, float weight, float height)
         {
@@ -37,11 +39,18 @@ namespace Tests___Project
             _Weight = weight;
             _Height = height;
             _Illness = ill;
+            _results = new BloodTest();
         }
         public String getFname() { return _Fname; }
         public String getLName() { return _LName; }
         public String getId() { return _ID; }
+        public String getBP() { return _BP; }
+        public String getIllness() { return _Illness; }
         public float getAge() { return _Age; }
+        public float getWeight() { return _Weight; }
+        public float getHeight() { return _Height; }
+        public BloodTest getresults() { return _results; }
+        public void setResults(BloodTest results) { _results = results; }
 
     }
 }

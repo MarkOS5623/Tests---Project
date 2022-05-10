@@ -13,6 +13,7 @@ namespace Tests___Project
     public partial class MainPage : Form
     {
         public static List<Patient> PatientList = new List<Patient>();
+
         Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
@@ -38,10 +39,14 @@ namespace Tests___Project
 
         private void QuestionButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            Questionnaire f = new Questionnaire();
-            f.Closed += (s, args) => this.Close();
-            f.Show();
+            if (PatientList.Count == 1)
+            {
+                this.Hide();
+                Questionnaire f = new Questionnaire();
+                f.Closed += (s, args) => this.Close();
+                f.Show();
+            }
+            else MessageBox.Show("No patient has been addmited!!");
         }
 
         public void InitializeTable()
@@ -60,6 +65,37 @@ namespace Tests___Project
         private void SymptomsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void BloodButton_Click(object sender, EventArgs e)
+        {
+            if (PatientList.Count == 1)
+            {
+                Excel excel = new Excel(@"Data.xlsx", 1);
+                int WBC = Convert.ToInt32(excel.ReadCell(1, 0));
+                decimal Neutrophil = Convert.ToDecimal(excel.ReadCell(2, 0));
+                decimal Lymphocytes = Convert.ToDecimal(excel.ReadCell(3, 0));
+                float RBC = Convert.ToSingle(excel.ReadCell(4, 0));
+                decimal HCT = Convert.ToDecimal(excel.ReadCell(5, 0));
+                float Urea = Convert.ToSingle(excel.ReadCell(6, 0));
+                float Hemoglobin = Convert.ToSingle(excel.ReadCell(7, 0));
+                int Iron = Convert.ToInt32(excel.ReadCell(8, 0));
+                float Crtn = Convert.ToSingle(excel.ReadCell(9, 0));
+                float HDL = Convert.ToSingle(excel.ReadCell(10, 0));
+                int AP = Convert.ToInt32(excel.ReadCell(11, 0));
+                BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
+                excel.Close();
+                PatientList[0].setResults(bloodTest);
+            }
+            else MessageBox.Show("No patient has been addmited!!");
+        }
+
+        private void InfoButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            PatientForm f = new PatientForm();
+            f.Closed += (s, args) => this.Close();
+            f.Show();
         }
     }
 }

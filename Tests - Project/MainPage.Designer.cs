@@ -76,6 +76,7 @@
             this.BloodButton.TabIndex = 5;
             this.BloodButton.Text = "Import Blood Test";
             this.BloodButton.UseVisualStyleBackColor = true;
+            this.BloodButton.Click += new System.EventHandler(this.BloodButton_Click);
             // 
             // InfoButton
             // 
@@ -86,6 +87,7 @@
             this.InfoButton.TabIndex = 6;
             this.InfoButton.Text = "Enter Patient Info";
             this.InfoButton.UseVisualStyleBackColor = true;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
             // label1
             // 

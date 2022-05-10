@@ -32,12 +32,12 @@ namespace Tests___Project
             Worksheet tempSheet = _Wb.Worksheets.Add(After : _Ws);
   
         }
-        public String ReadCell(int col, int row)
+        public double ReadCell(int col, int row)
         {
             col++;
             row++;
             if (_Ws.Cells[col, row].Value2 != null) return _Ws.Cells[col, row].Value2;
-            else return "";
+            else return 0;
         }
         public void WriteToCell(int col, int row, String s)
         {
