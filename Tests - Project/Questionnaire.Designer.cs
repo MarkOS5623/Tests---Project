@@ -45,6 +45,7 @@
             this.Overweight = new System.Windows.Forms.CheckBox();
             this.Underweight = new System.Windows.Forms.CheckBox();
             this.Muscle_Pain = new System.Windows.Forms.CheckBox();
+            this.Fever = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // Smoker
@@ -234,11 +235,23 @@
             this.Muscle_Pain.Text = "Muscle Pain";
             this.Muscle_Pain.UseVisualStyleBackColor = true;
             // 
+            // Fever
+            // 
+            this.Fever.AutoSize = true;
+            this.Fever.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.Fever.Location = new System.Drawing.Point(337, 302);
+            this.Fever.Name = "Fever";
+            this.Fever.Size = new System.Drawing.Size(81, 32);
+            this.Fever.TabIndex = 17;
+            this.Fever.Text = "Fever";
+            this.Fever.UseVisualStyleBackColor = true;
+            // 
             // Questionnaire
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(607, 450);
+            this.Controls.Add(this.Fever);
             this.Controls.Add(this.Muscle_Pain);
             this.Controls.Add(this.Underweight);
             this.Controls.Add(this.Overweight);
@@ -282,5 +295,6 @@
         private CheckBox Overweight;
         private CheckBox Underweight;
         private CheckBox Muscle_Pain;
+        private CheckBox Fever;
     }
 }

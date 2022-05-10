@@ -33,7 +33,6 @@ namespace Tests___Project
 
             if (Overweight.Checked) {
                 Diagnostics.Add("Overweight");
-                Diagnostics.Add("Hyperlipidemia");
                 Symptoms.Add("Overweight");}
 
             if (Bleeding.Checked){
@@ -50,7 +49,7 @@ namespace Tests___Project
             if (Breathing_Problems.Checked) {
                 Symptoms.Add("Breathing Problems");}
 
-            if (Breathing_Problems.Checked || Asthma.Checked || Smoker.Checked) {
+            if (Asthma.Checked) { 
                 Diagnostics.Add("Lung disease");
                 Symptoms.Add("Asthma");}
 
@@ -60,30 +59,22 @@ namespace Tests___Project
 
             if (Fainting.Checked) Symptoms.Add("Fainting");
 
-            if (Fainting.Checked || Headaches.Checked) Diagnostics.Add("Dehydration");
+            if (Headaches.Checked) Symptoms.Add("Dehydration");
 
             if (Diabetes.Checked) {
                 Diagnostics.Add("Adult diabetes");
                 Symptoms.Add("Adult diabetes");}
 
-            if (Weakness.Checked || (Headaches.Checked && Breathing_Problems.Checked) || Fainting.Checked) {
-                Diagnostics.Add("Anemia");
-                Diagnostics.Add("Iron deficiency");
-                Diagnostics.Add("Cancer");}
+            if (Muscle_Pain.Checked) Symptoms.Add("Muscle Pain");
 
-            if (Weakness.Checked && Headaches.Checked && Breathing_Problems.Checked && Fainting.Checked) Diagnostics.Add("Cancer");
+            if(Nause.Checked) Symptoms.Add("Nause");
 
-            if (Weakness.Checked && Headaches.Checked && Nause.Checked) Diagnostics.Add("Iron poisoning");
+            if (Abdominal_Pains.Checked) Symptoms.Add("Abdominal Pains");
 
+            if (Diarrhea.Checked) Symptoms.Add("Diarrhea");
 
-            if(Diarrhea.Checked && Abdominal_Pains.Checked) Diagnostics.Add("Digestive tract problems");
+            if (Fever.Checked) Symptoms.Add("Fever");
 
-            if (Weakness.Checked || Headaches.Checked || Breathing_Problems.Checked)
-                Diagnostics.Add("Viral infection");
-
-            if (Muscle_Pain.Checked) Symptoms.Add("Muscle disease");
-
-            if(Weakness.Checked && (Underweight.Checked || Overweight.Checked)) Symptoms.Add("Thyroid gland problems");
             this.Hide();
             MainPage f = new MainPage();
             f.Closed += (s, args) => this.Close();
