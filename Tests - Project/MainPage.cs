@@ -13,12 +13,13 @@ namespace Tests___Project
     public partial class MainPage : Form
     {
         public static List<Patient> PatientList = new List<Patient>();
+        public static bool flag = false;
 
         Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
             { "Blood cell problems", "Two 10mg B12 pills a day for a month + One 5mg polyc acid pill a day for a Month" },
-            { "Hematological disorder ", "Hormone shot" }, { "Iron deficiency", "Two 10mg B12 pills a day for a month"},
+            { "Hematological disorder", "Hormone shot" }, { "Iron deficiency", "Two 10mg B12 pills a day for a month"},
             { "Iron poisoning", "Go to the Hospital"}, { "Dehydration", "lay down and drink a lot of water"},
             { "Infection", "Antibotics"},{ "Vitamin deficiency", "Blood test to identify missing vitamins"},
             { "Viral infection", "Resting at home"}, { "Digestive tract problems", "Referral for surgery"},
@@ -73,10 +74,10 @@ namespace Tests___Project
             {
                 Excel excel = new Excel(@"Data.xlsx", 1);
                 int WBC = Convert.ToInt32(excel.ReadCell(1, 0));
-                decimal Neutrophil = Convert.ToDecimal(excel.ReadCell(2, 0));
-                decimal Lymphocytes = Convert.ToDecimal(excel.ReadCell(3, 0));
+                float Neutrophil = Convert.ToSingle(excel.ReadCell(2, 0));
+                float Lymphocytes = Convert.ToSingle(excel.ReadCell(3, 0));
                 float RBC = Convert.ToSingle(excel.ReadCell(4, 0));
-                decimal HCT = Convert.ToDecimal(excel.ReadCell(5, 0));
+                float HCT = Convert.ToSingle(excel.ReadCell(5, 0));
                 float Urea = Convert.ToSingle(excel.ReadCell(6, 0));
                 float Hemoglobin = Convert.ToSingle(excel.ReadCell(7, 0));
                 int Iron = Convert.ToInt32(excel.ReadCell(8, 0));
@@ -86,6 +87,7 @@ namespace Tests___Project
                 BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
                 excel.Close();
                 PatientList[0].setResults(bloodTest);
+                flag = true;
             }
             else MessageBox.Show("No patient has been addmited!!");
         }

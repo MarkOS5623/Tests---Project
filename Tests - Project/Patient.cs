@@ -11,46 +11,46 @@ namespace Tests___Project
         private String _Fname;
         private String _LName;
         private String _ID;
-        private String _BP;
         private String _Illness;
         private float _Age;
         private float _Weight;
         private float _Height;
         private BloodTest _results;
+        private bool _Male;
         public Patient()
         {
             _Fname = "John";
             _LName = "Doe";
             _ID = "id";
-            _BP = "XX/XX";
             _Illness = "";
             _Age = 0;
             _Weight = 0;
             _Height = 0;
             _results = new BloodTest();
+            _Male = false;
         }
-        public Patient(String fname, String lname, String id, String bp, String ill, float age, float weight, float height)
+        public Patient(String fname, String lname, String id, String ill, float age, float weight, float height, bool male)
         {
             _Fname = fname;
             _LName = lname;
             _ID = id;
-            _BP = bp;
             _Age = age;
             _Weight = weight;
             _Height = height;
             _Illness = ill;
             _results = new BloodTest();
+            _Male = male;
         }
         public String getFname() { return _Fname; }
         public String getLName() { return _LName; }
         public String getId() { return _ID; }
-        public String getBP() { return _BP; }
         public String getIllness() { return _Illness; }
         public float getAge() { return _Age; }
         public float getWeight() { return _Weight; }
         public float getHeight() { return _Height; }
         public BloodTest getresults() { return _results; }
         public void setResults(BloodTest results) { _results = results; }
+        public bool getMale() { return _Male; }
 
     }
 }

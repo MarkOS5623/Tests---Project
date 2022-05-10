@@ -16,9 +16,9 @@ namespace Tests___Project
         private float Hemoglobin;
         private float Crtn;
         private float HDL;
-        private decimal Neutrophil;
-        private decimal Lymphocytes;
-        private decimal HCT;
+        private float Neutrophil;
+        private float Lymphocytes;
+        private float HCT;
 
         public BloodTest()
         {
@@ -34,7 +34,7 @@ namespace Tests___Project
             Lymphocytes = 0;
             HCT = 0;
         }
-        public BloodTest(int wbc, decimal neutrophil, decimal lymphocytes, float rbc, decimal hct, float urea, float hemoglobin, int iron, float crtn, float hdl, int ap)
+        public BloodTest(int wbc, float neutrophil, float lymphocytes, float rbc, float hct, float urea, float hemoglobin, int iron, float crtn, float hdl, int ap)
         {
             WBC = wbc;
             AP = ap;
@@ -56,8 +56,8 @@ namespace Tests___Project
         public float getHemoglobin() { return Hemoglobin; }
         public float getCrtn() { return Crtn; }
         public float getHDL() { return HDL; }
-        public decimal getNeutrophil() { return Neutrophil; }
-        public decimal getLymphocytes() { return Lymphocytes; }
-        public decimal getHCT() { return HCT; }
+        public float getNeutrophil() { return Neutrophil; }
+        public float getLymphocytes() { return Lymphocytes; }
+        public float getHCT() { return HCT; }
     }
 }

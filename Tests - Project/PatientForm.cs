@@ -14,6 +14,7 @@ namespace Tests___Project
     {
         public PatientForm()
         {
+            
             InitializeComponent();
         }
 
@@ -24,13 +25,19 @@ namespace Tests___Project
 
         private void DoneButton_Click(object sender, EventArgs e)
         {
-            Patient Zero = new Patient(FnameBox.Text,LnameBox.Text,IdBox.Text,BPBox.Text, "",float.Parse(AgeBox.Text),
-                float.Parse(WeightBox.Text),float.Parse(HeightBox.Text));
+            bool sex;
+            if (SexBox.Items.IndexOf(SexBox) == 0)
+                sex = false;
+            else sex = true;
+            Patient Zero = new Patient(FnameBox.Text,LnameBox.Text,IdBox.Text, "",float.Parse(AgeBox.Text),
+                float.Parse(WeightBox.Text),float.Parse(HeightBox.Text), sex);
             MainPage.PatientList.Add(Zero);
             this.Hide();
             MainPage f = new MainPage();
             f.Closed += (s, args) => this.Close();
             f.Show();
         }
+
+        
     }
 }

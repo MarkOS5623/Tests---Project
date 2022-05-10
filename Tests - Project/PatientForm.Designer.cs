@@ -39,11 +39,11 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.BPBox = new System.Windows.Forms.TextBox();
             this.HeightBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.DoneButton = new System.Windows.Forms.Button();
+            this.SexBox = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // FnameBox
@@ -147,25 +147,6 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Height:";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(15, 302);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(145, 28);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Blood Pressure:";
-            // 
-            // BPBox
-            // 
-            this.BPBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BPBox.Location = new System.Drawing.Point(166, 299);
-            this.BPBox.Name = "BPBox";
-            this.BPBox.Size = new System.Drawing.Size(93, 34);
-            this.BPBox.TabIndex = 13;
-            this.BPBox.Text = "XX/XX";
-            // 
             // HeightBox
             // 
             this.HeightBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
@@ -194,16 +175,38 @@
             this.DoneButton.UseVisualStyleBackColor = true;
             this.DoneButton.Click += new System.EventHandler(this.DoneButton_Click);
             // 
+            // SexBox
+            // 
+            this.SexBox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.SexBox.FormattingEnabled = true;
+            this.SexBox.Items.AddRange(new object[] {
+            "Female",
+            "Male"});
+            this.SexBox.Location = new System.Drawing.Point(134, 299);
+            this.SexBox.Name = "SexBox";
+            this.SexBox.Size = new System.Drawing.Size(125, 36);
+            this.SexBox.TabIndex = 18;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(15, 299);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 28);
+            this.label7.TabIndex = 19;
+            this.label7.Text = "Sex:";
+            // 
             // PatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 377);
+            this.ClientSize = new System.Drawing.Size(475, 375);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.SexBox);
             this.Controls.Add(this.DoneButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.HeightBox);
-            this.Controls.Add(this.BPBox);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -236,10 +239,10 @@
         private Label label4;
         private Label label5;
         private Label label6;
-        private Label label7;
-        private TextBox BPBox;
         private TextBox HeightBox;
         private Label label9;
         private Button DoneButton;
+        private ComboBox SexBox;
+        private Label label7;
     }
 }
