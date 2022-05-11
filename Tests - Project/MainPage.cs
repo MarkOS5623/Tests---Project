@@ -43,10 +43,10 @@ namespace Tests___Project
         {
             if (PatientList.Count == 1)
             {
-                this.Hide();
                 Questionnaire f = new Questionnaire();
-                f.Closed += (s, args) => this.Close();
-                f.Show();
+                f.ShowDialog();
+                InitializeTable();
+                flag2 = true;
             }
             else MessageBox.Show("No patient has been addmited!!");
         }
@@ -54,8 +54,8 @@ namespace Tests___Project
         public void InitializeTable()
         {
             int n = Questionnaire.Symptoms.Count;
-            for (int i = 0; i < n; i++) 
-                if(flag2 == false)
+            for (int i = 0; i < n; i++)
+                if (flag2 == false)
                     SymptomsBox.Items.Add(Questionnaire.Symptoms[i]);
 
             int k = Questionnaire.Diagnostics.Count;
@@ -91,17 +91,15 @@ namespace Tests___Project
                 flag = true;
                 f.AdultdiseaseInator();
                 InitializeTable();
-                flag3 = true;
+                flag3 = true; // Prevents doubling of diagnostics
             }
             else MessageBox.Show("No patient has been addmited!!");
         }
 
         private void InfoButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
             PatientForm f = new PatientForm();
-            f.Closed += (s, args) => this.Close();
-            f.Show();
+            f.ShowDialog();
         }
     }
 }

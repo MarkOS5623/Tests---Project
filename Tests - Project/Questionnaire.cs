@@ -89,11 +89,7 @@ namespace Tests___Project
 
             if (Fever.Checked && (!Alreadyin("Fever", Symptoms))) Symptoms.Add("Fever");
 
-            this.Hide();
-            MainPage f = new MainPage();
-            MainPage.flag2 = true;
-            f.Closed += (s, args) => this.Close();
-            f.Show();
+            this.Close();
         }
 
         public void AdultdiseaseInator()

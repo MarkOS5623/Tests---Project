@@ -31,12 +31,12 @@ namespace Tests___Project
             Patient Zero = new Patient(FnameBox.Text,LnameBox.Text,IdBox.Text, "",float.Parse(AgeBox.Text),
                 float.Parse(WeightBox.Text),float.Parse(HeightBox.Text), sex);
             MainPage.PatientList.Add(Zero);
-            this.Hide();
-            MainPage f = new MainPage();
-            f.Closed += (s, args) => this.Close();
-            f.Show();
+            this.Close();
         }
 
-        
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

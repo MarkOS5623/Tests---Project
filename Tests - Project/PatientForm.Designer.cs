@@ -44,6 +44,7 @@
             this.DoneButton = new System.Windows.Forms.Button();
             this.SexBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.CancelButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // FnameBox
@@ -167,7 +168,7 @@
             // 
             // DoneButton
             // 
-            this.DoneButton.Location = new System.Drawing.Point(340, 325);
+            this.DoneButton.Location = new System.Drawing.Point(340, 345);
             this.DoneButton.Name = "DoneButton";
             this.DoneButton.Size = new System.Drawing.Size(123, 40);
             this.DoneButton.TabIndex = 17;
@@ -197,11 +198,22 @@
             this.label7.TabIndex = 19;
             this.label7.Text = "Sex:";
             // 
+            // CancelButton
+            // 
+            this.CancelButton.Location = new System.Drawing.Point(12, 345);
+            this.CancelButton.Name = "CancelButton";
+            this.CancelButton.Size = new System.Drawing.Size(123, 40);
+            this.CancelButton.TabIndex = 20;
+            this.CancelButton.Text = "Cancel";
+            this.CancelButton.UseVisualStyleBackColor = true;
+            this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
+            // 
             // PatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(475, 375);
+            this.ClientSize = new System.Drawing.Size(475, 397);
+            this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.SexBox);
             this.Controls.Add(this.DoneButton);
@@ -244,5 +256,6 @@
         private Button DoneButton;
         private ComboBox SexBox;
         private Label label7;
+        private Button CancelButton;
     }
 }
