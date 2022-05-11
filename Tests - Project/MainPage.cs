@@ -16,6 +16,7 @@ namespace Tests___Project
         public static bool flag = false;
         public static bool flag2 = false;
         public static bool flag3 = false;
+        public static bool flag4 = false;
         Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
@@ -41,13 +42,15 @@ namespace Tests___Project
 
         private void QuestionButton_Click(object sender, EventArgs e)
         {
-            if (PatientList.Count == 1)
+            if (PatientList.Count == 1 && flag4 == false)
             {
                 Questionnaire f = new Questionnaire();
                 f.ShowDialog();
                 InitializeTable();
-                flag2 = true;
+                flag2 = true; // Prevents doubling of symptoms
+                flag4 = true;
             }
+            else if (flag4 = true) MessageBox.Show("The patient has already filled the form!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
@@ -63,6 +66,19 @@ namespace Tests___Project
                 if (flag3 == false)
                     Illments.Items.Add(Questionnaire.Diagnostics[i]);
         }
+        public void InitializeInfo()
+        {
+            Patient Zero = PatientList[0];
+            Patient_Info.Items.Add("First Name: " + Zero.getFname());
+            Patient_Info.Items.Add("Last Name: " + Zero.getLName());
+            Patient_Info.Items.Add("ID Number: " + Zero.getId());
+            if(Zero.getMale())
+                Patient_Info.Items.Add("Sex: Male");
+            else Patient_Info.Items.Add("Sex: Female");
+            Patient_Info.Items.Add("Age: " + Zero.getAge() + " years old");
+            Patient_Info.Items.Add("Height: " + Zero.getHeight() + " Cm");
+            Patient_Info.Items.Add("Weight: " + Zero.getWeight() + " Kg");
+        }
         private void SymptomsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
@@ -70,7 +86,7 @@ namespace Tests___Project
 
         private void BloodButton_Click(object sender, EventArgs e)
         {
-            if (PatientList.Count == 1)
+            if (PatientList.Count == 1 && flag == false)
             {
                 Questionnaire f = new Questionnaire();
                 Excel excel = new Excel(@"Data.xlsx", 1);
@@ -93,13 +109,30 @@ namespace Tests___Project
                 InitializeTable();
                 flag3 = true; // Prevents doubling of diagnostics
             }
+            else if (flag = true) MessageBox.Show("The patient's blood test has already been imported!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
         private void InfoButton_Click(object sender, EventArgs e)
         {
-            PatientForm f = new PatientForm();
-            f.ShowDialog();
+            if (PatientList.Count == 0) {
+                PatientForm f = new PatientForm();
+                f.ShowDialog();
+                InitializeInfo();} //i was here
+            else MessageBox.Show("Only one patient can be admited at the time!!");
+        }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            LoginForm f = new LoginForm();
+            f.Closed += (s, args) => this.Close();
+            f.Show();
+        }
+
+        private void CloseButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
