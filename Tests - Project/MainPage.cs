@@ -134,5 +134,82 @@ namespace Tests___Project
         {
             this.Close();
         }
+
+        public void BloodResults()
+        {
+            BloodTest bloodTest = PatientList[0].getresults();
+
+            if (bloodTest.getWBC() < 4500) { }
+
+            if (bloodTest.getWBC() > 11000) { }
+
+            if (bloodTest.getNeutrophil() < 28) { }
+
+            if (bloodTest.getNeutrophil() > 54) { }
+
+            if (bloodTest.getLymphocytes() < 36) { }
+
+            if (bloodTest.getLymphocytes() > 52) { }
+
+            if (bloodTest.getRBC() < 4.5) { }
+
+            if (bloodTest.getRBC() > 6) { }
+
+            if (PatientList[0].getMale())
+            {
+                if (bloodTest.getHCT() < 37) { }
+                if (bloodTest.getHCT() > 54) { }
+            }
+            else
+            {
+                if (bloodTest.getHCT() < 33) { }
+                if (bloodTest.getHCT() > 47) { }
+            }
+
+            if (bloodTest.getUrea() < 17) { }
+
+            if (bloodTest.getUrea() > 43) { }
+
+            if (PatientList[0].getMale())
+            {
+                if (bloodTest.getHemoglobin() < 12) { }
+                if (bloodTest.getHemoglobin() > 18) { }
+            }
+            else
+            {
+                if (bloodTest.getHemoglobin() < 12) { }
+                if (bloodTest.getHemoglobin() > 16) { }
+            }
+
+            if (bloodTest.getCrtn() < 0.6) { }
+
+            if (bloodTest.getCrtn() > 1) { }
+
+            if (PatientList[0].getMale())
+            {
+                if (bloodTest.getIron() < 60) { }
+                if (bloodTest.getIron() > 160) { }
+            }
+            else
+            {
+                if (bloodTest.getIron() < 48) { }
+                if (bloodTest.getIron() > 128) { }
+            }
+
+            if (PatientList[0].getMale())
+            {
+                if (bloodTest.getHDL() < 29) { }
+                if (bloodTest.getHDL() > 62) { }
+            }
+            else
+            {
+                if (bloodTest.getHDL() < 34) { }
+                if (bloodTest.getHDL() > 82) { }
+            }
+
+            if (bloodTest.getAP() < 60) { }
+
+            if (bloodTest.getAP() > 120) { }
+        }
     }
 }
