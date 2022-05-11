@@ -14,7 +14,8 @@ namespace Tests___Project
     {
         public static List<Patient> PatientList = new List<Patient>();
         public static bool flag = false;
-
+        public static bool flag2 = false;
+        public static bool flag3 = false;
         Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
@@ -53,15 +54,14 @@ namespace Tests___Project
         public void InitializeTable()
         {
             int n = Questionnaire.Symptoms.Count;
-            for (int i = 0; i < n; i++)
-            {
-                SymptomsBox.Items.Add(Questionnaire.Symptoms[i]);
-            }
+            for (int i = 0; i < n; i++) 
+                if(flag2 == false)
+                    SymptomsBox.Items.Add(Questionnaire.Symptoms[i]);
+
             int k = Questionnaire.Diagnostics.Count;
             for (int i = 0; i < k; i++)
-            {
-                Illments.Items.Add(Questionnaire.Diagnostics[i]);
-            }
+                if (flag3 == false)
+                    Illments.Items.Add(Questionnaire.Diagnostics[i]);
         }
         private void SymptomsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -72,6 +72,7 @@ namespace Tests___Project
         {
             if (PatientList.Count == 1)
             {
+                Questionnaire f = new Questionnaire();
                 Excel excel = new Excel(@"Data.xlsx", 1);
                 int WBC = Convert.ToInt32(excel.ReadCell(1, 0));
                 float Neutrophil = Convert.ToSingle(excel.ReadCell(2, 0));
@@ -88,6 +89,9 @@ namespace Tests___Project
                 excel.Close();
                 PatientList[0].setResults(bloodTest);
                 flag = true;
+                f.AdultdiseaseInator();
+                InitializeTable();
+                flag3 = true;
             }
             else MessageBox.Show("No patient has been addmited!!");
         }

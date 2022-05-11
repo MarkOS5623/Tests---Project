@@ -14,7 +14,6 @@ namespace Tests___Project
     {
         public PatientForm()
         {
-            
             InitializeComponent();
         }
 
