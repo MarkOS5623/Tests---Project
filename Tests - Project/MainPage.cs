@@ -13,6 +13,7 @@ namespace Tests___Project
     public partial class MainPage : Form
     {
         public static List<Patient> PatientList = new List<Patient>();
+        public static List<String> BloodTests = new List<String>();
         public static bool flag = false;
         public static bool flag2 = false;
         public static bool flag3 = false;
@@ -139,77 +140,77 @@ namespace Tests___Project
         {
             BloodTest bloodTest = PatientList[0].getresults();
 
-            if (bloodTest.getWBC() < 4500) { }
+            if (bloodTest.getWBC() < 4500) BloodTests.Add("Low white cells count");
 
-            if (bloodTest.getWBC() > 11000) { }
+            if (bloodTest.getWBC() > 11000) BloodTests.Add("High white cells count");
 
-            if (bloodTest.getNeutrophil() < 28) { }
+            if (bloodTest.getNeutrophil() < 28) BloodTests.Add("Low Neutrophil count");
 
-            if (bloodTest.getNeutrophil() > 54) { }
+            if (bloodTest.getNeutrophil() > 54) BloodTests.Add("High Neutrophil count");
 
-            if (bloodTest.getLymphocytes() < 36) { }
+            if (bloodTest.getLymphocytes() < 36) BloodTests.Add("Low Lymphocytes count");
 
-            if (bloodTest.getLymphocytes() > 52) { }
+            if (bloodTest.getLymphocytes() > 52) BloodTests.Add("High Lymphocytes count");
 
-            if (bloodTest.getRBC() < 4.5) { }
+            if (bloodTest.getRBC() < 4.5) BloodTests.Add("Low red cells count");
 
-            if (bloodTest.getRBC() > 6) { }
-
-            if (PatientList[0].getMale())
-            {
-                if (bloodTest.getHCT() < 37) { }
-                if (bloodTest.getHCT() > 54) { }
-            }
-            else
-            {
-                if (bloodTest.getHCT() < 33) { }
-                if (bloodTest.getHCT() > 47) { }
-            }
-
-            if (bloodTest.getUrea() < 17) { }
-
-            if (bloodTest.getUrea() > 43) { }
+            if (bloodTest.getRBC() > 6) BloodTests.Add("High red cells count");
 
             if (PatientList[0].getMale())
             {
-                if (bloodTest.getHemoglobin() < 12) { }
-                if (bloodTest.getHemoglobin() > 18) { }
+                if (bloodTest.getHCT() < 37) BloodTests.Add("Low HCT count");
+                if (bloodTest.getHCT() > 54) BloodTests.Add("High HCT count");
             }
             else
             {
-                if (bloodTest.getHemoglobin() < 12) { }
-                if (bloodTest.getHemoglobin() > 16) { }
+                if (bloodTest.getHCT() < 33) BloodTests.Add("Low HCT count");
+                if (bloodTest.getHCT() > 47) BloodTests.Add("High HCT count");
             }
 
-            if (bloodTest.getCrtn() < 0.6) { }
+            if (bloodTest.getUrea() < 17) BloodTests.Add("Low urea count");
 
-            if (bloodTest.getCrtn() > 1) { }
+            if (bloodTest.getUrea() > 43) BloodTests.Add("High urea count");
 
             if (PatientList[0].getMale())
             {
-                if (bloodTest.getIron() < 60) { }
-                if (bloodTest.getIron() > 160) { }
+                if (bloodTest.getHemoglobin() < 12) BloodTests.Add("Low hemoglobin count");
+                if (bloodTest.getHemoglobin() > 18) BloodTests.Add("High hemoglobin count");
             }
             else
             {
-                if (bloodTest.getIron() < 48) { }
-                if (bloodTest.getIron() > 128) { }
+                if (bloodTest.getHemoglobin() < 12) BloodTests.Add("Low hemoglobin count");
+                if (bloodTest.getHemoglobin() > 16) BloodTests.Add("High hemoglobin count");
+            }
+
+            if (bloodTest.getCrtn() < 0.6) BloodTests.Add("Low creatin count");
+
+            if (bloodTest.getCrtn() > 1) BloodTests.Add("High creatin count");
+
+            if (PatientList[0].getMale())
+            {
+                if (bloodTest.getIron() < 60) BloodTests.Add("Low iron count");
+                if (bloodTest.getIron() > 160) BloodTests.Add("High iron count");
+            }
+            else
+            {
+                if (bloodTest.getIron() < 48) BloodTests.Add("Low iron count");
+                if (bloodTest.getIron() > 128) BloodTests.Add("High iron count");
             }
 
             if (PatientList[0].getMale())
             {
-                if (bloodTest.getHDL() < 29) { }
-                if (bloodTest.getHDL() > 62) { }
+                if (bloodTest.getHDL() < 29) BloodTests.Add("Low HDL count");
+                if (bloodTest.getHDL() > 62) BloodTests.Add("High HDL count");
             }
             else
             {
-                if (bloodTest.getHDL() < 34) { }
-                if (bloodTest.getHDL() > 82) { }
+                if (bloodTest.getHDL() < 34) BloodTests.Add("Low HDL count");
+                if (bloodTest.getHDL() > 82) BloodTests.Add("High HDL count");
             }
 
-            if (bloodTest.getAP() < 60) { }
+            if (bloodTest.getAP() < 60) BloodTests.Add("Low AP count");
 
-            if (bloodTest.getAP() > 120) { }
+            if (bloodTest.getAP() > 120) BloodTests.Add("High AP count");
         }
     }
 }
