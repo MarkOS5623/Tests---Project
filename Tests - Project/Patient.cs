@@ -12,6 +12,7 @@ namespace Tests___Project
         private String _LName;
         private String _ID;
         private String _Illness;
+        private String _Treatment;
         private float _Age;
         private float _Weight;
         private float _Height;
@@ -23,6 +24,7 @@ namespace Tests___Project
             _LName = "Doe";
             _ID = "id";
             _Illness = "";
+            _Treatment = "";
             _Age = 0;
             _Weight = 0;
             _Height = 0;
@@ -40,17 +42,20 @@ namespace Tests___Project
             _Illness = ill;
             _results = new BloodTest();
             _Male = male;
+            _Treatment = "";
         }
         public String getFname() { return _Fname; }
         public String getLName() { return _LName; }
         public String getId() { return _ID; }
         public String getIllness() { return _Illness; }
+        public String getTreatment() { return _Treatment; }
         public float getAge() { return _Age; }
         public float getWeight() { return _Weight; }
         public float getHeight() { return _Height; }
         public BloodTest getresults() { return _results; }
-        public void setResults(BloodTest results) { _results = results; }
         public bool getMale() { return _Male; }
-
+        public void setResults(BloodTest results) { _results = results; }
+        public void setTreatment(String treatment) { _Treatment = treatment; }
+        public void setIllness(String illeness) { _Illness = illeness; }
     }
 }

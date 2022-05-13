@@ -45,6 +45,8 @@ namespace Tests___Project
 
         private void DoneButton_Click(object sender, EventArgs e)
         {
+            MainPage.PatientList[0].setIllness(comboBox1.Text);
+            MainPage.PatientList[0].setTreatment(comboBox1.Text);
             this.Close();
         }
         private void ComboInitializer()

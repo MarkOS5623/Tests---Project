@@ -45,6 +45,9 @@
             this.SexBox = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.CancelButton = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // FnameBox
@@ -208,11 +211,44 @@
             this.CancelButton.UseVisualStyleBackColor = true;
             this.CancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(265, 177);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 28);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Years";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label10.Location = new System.Drawing.Point(265, 220);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 28);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Kg";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label11.Location = new System.Drawing.Point(265, 262);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 28);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Cm";
+            // 
             // PatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(475, 397);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.CancelButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.SexBox);
@@ -257,5 +293,8 @@
         private ComboBox SexBox;
         private Label label7;
         private Button CancelButton;
+        private Label label8;
+        private Label label10;
+        private Label label11;
     }
 }

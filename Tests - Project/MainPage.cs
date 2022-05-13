@@ -41,6 +41,7 @@ namespace Tests___Project
         {
             InitializeComponent();
             InitializeTable();
+            DiagnosticForm f = new DiagnosticForm();
         }
 
         private void QuestionButton_Click(object sender, EventArgs e)
@@ -109,7 +110,7 @@ namespace Tests___Project
             if (PatientList.Count == 0) {
                 PatientForm f = new PatientForm();
                 f.ShowDialog();
-                InitializeInfo();} //i was here
+                InitializeInfo();}
             else MessageBox.Show("Only one patient can be admited at the time!!");
         }
 
@@ -123,13 +124,53 @@ namespace Tests___Project
 
         private void CloseButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            DialogResult iExit;
+            iExit = MessageBox.Show("Are you sure you want to quit the program?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (iExit == DialogResult.Yes)
+                Application.Exit();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             DiagnosticForm f = new DiagnosticForm();
             f.ShowDialog();
+        }
+
+        
+        private void Dismiss_Click(object sender, EventArgs e)
+        {
+            int n = PatientList.Count;
+            if(n == 0) {
+                MessageBox.Show("No patient has been admited!!");
+                return;
+            }
+            DialogResult Dismiss;
+            if(PatientList[0].getIllness() == "")
+                Dismiss = MessageBox.Show("The patient hasn't been diagnosed yet!\n" +
+                    "Are you sure you want to dismiss the patient?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            else Dismiss = MessageBox.Show("The patient has been diagnosed!\n" +
+                    "Are you sure you want to dismiss the patient?", "Exit", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+            if (Dismiss == DialogResult.Yes)
+                Dismisser();
+        }
+        public void Dismisser()
+        {
+            PatientList.Clear();
+            BloodTests.Clear();
+            Patient_Info.Items.Clear();
+            SymptomsBox.Items.Clear();
+            Illments.Items.Clear();
+            Questionnaire.Diagnostics.Clear();
+            Questionnaire.Symptoms.Clear();
+            flag = false;
+            flag2 = false;
+            flag3 = false;
+            flag4 = false;
+        }
+
+        private void Patient_Info_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

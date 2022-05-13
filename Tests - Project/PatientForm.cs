@@ -29,7 +29,7 @@ namespace Tests___Project
                 sex = false;
             else sex = true;
             Patient Zero = new Patient(FnameBox.Text,LnameBox.Text,IdBox.Text, "",float.Parse(AgeBox.Text),
-                float.Parse(WeightBox.Text),float.Parse(HeightBox.Text), sex);
+                    float.Parse(WeightBox.Text),float.Parse(HeightBox.Text), sex);
             MainPage.PatientList.Add(Zero);
             this.Close();
         }

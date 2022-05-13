@@ -126,6 +126,7 @@
             this.Patient_Info.Name = "Patient_Info";
             this.Patient_Info.Size = new System.Drawing.Size(305, 264);
             this.Patient_Info.TabIndex = 9;
+            this.Patient_Info.SelectedIndexChanged += new System.EventHandler(this.Patient_Info_SelectedIndexChanged);
             // 
             // Dismiss
             // 
@@ -136,6 +137,7 @@
             this.Dismiss.TabIndex = 10;
             this.Dismiss.Text = "Dismiss Patient";
             this.Dismiss.UseVisualStyleBackColor = true;
+            this.Dismiss.Click += new System.EventHandler(this.Dismiss_Click);
             // 
             // label3
             // 
