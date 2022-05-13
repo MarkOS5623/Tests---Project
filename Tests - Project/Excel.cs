@@ -34,15 +34,11 @@ namespace Tests___Project
         }
         public double ReadCell(int col, int row)
         {
-            col++;
-            row++;
             if (_Ws.Cells[col, row].Value2 != null) return _Ws.Cells[col, row].Value2;
             else return 0;
         }
-        public void WriteToCell(int col, int row, String s)
+        public void WriteToCell(int row, int col, String s)
         {
-            col++;
-            row++;
             _Ws.Cells[col, row].Value2 = s;
         }
         public void Save()

@@ -180,7 +180,7 @@
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(139, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
@@ -193,6 +193,7 @@
             this.button1.TabIndex = 14;
             this.button1.Text = "Diagnose Patient";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MainPage
             // 
