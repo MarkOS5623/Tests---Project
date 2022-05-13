@@ -161,7 +161,7 @@ namespace Tests___Project
         }
         public static void createExcel()
         {
-            Excel excel = new Excel();
+            Excel excel = new Excel(@"Data.xlsx", 1);
             excel.CreateNewFile();
             excel.CreateNewSheet();
             excel.Save();

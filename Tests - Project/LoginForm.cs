@@ -8,6 +8,7 @@ namespace Tests___Project
         {
             DoctorList = new List<Doctor>();
             DoctorList.Add(new Doctor("Admin45", "Admin45!", "315126201"));
+            Utility.createExcel();
             InitializeComponent();
         }
 
