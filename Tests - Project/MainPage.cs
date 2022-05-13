@@ -14,10 +14,12 @@ namespace Tests___Project
     {
         public static List<Patient> PatientList = new List<Patient>();
         public static List<String> BloodTests = new List<String>();
+        //flags for checks
         public static bool flag = false;
         public static bool flag2 = false;
         public static bool flag3 = false;
         public static bool flag4 = false;
+
         public static Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
             { "Hyperlipidemia", "One 5mg Simbobil pill a day for a week, Dietian visit"},
@@ -90,24 +92,11 @@ namespace Tests___Project
             if (PatientList.Count == 1 && flag == false)
             {
                 Questionnaire f = new Questionnaire();
-                Excel excel = new Excel(@"Data.xlsx", 1);
-                int WBC = Convert.ToInt32(excel.ReadCell(2, 1));
-                float Neutrophil = Convert.ToSingle(excel.ReadCell(2,2));
-                float Lymphocytes = Convert.ToSingle(excel.ReadCell(2, 3));
-                float RBC = Convert.ToSingle(excel.ReadCell(2, 4));
-                float HCT = Convert.ToSingle(excel.ReadCell(2, 5));
-                float Urea = Convert.ToSingle(excel.ReadCell(2, 6));
-                float Hemoglobin = Convert.ToSingle(excel.ReadCell(2, 7));
-                float Crtn = Convert.ToSingle(excel.ReadCell(2, 8));
-                int Iron = Convert.ToInt32(excel.ReadCell(2, 9));
-                float HDL = Convert.ToSingle(excel.ReadCell(2, 10));
-                int AP = Convert.ToInt32(excel.ReadCell(2, 11));
-                BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
-                excel.Close();
+                BloodTest bloodTest = Utility.ExcelToBlood();
                 PatientList[0].setResults(bloodTest);
                 flag = true;
                 f.AdultdiseaseInator();
-                BloodResults();
+                Utility.BloodResults();
                 InitializeTable();
                 flag3 = true; // Prevents doubling of diagnostics
             }
@@ -135,105 +124,6 @@ namespace Tests___Project
         private void CloseButton_Click(object sender, EventArgs e)
         {
             this.Close();
-        }
-
-        public void BloodResults()
-        {
-            BloodTest bloodTest = PatientList[0].getresults();
-
-            if (bloodTest.getWBC() < 4500) BloodTests.Add(bloodTest.getWBC() + " - LOW");
-
-            else if (bloodTest.getWBC() > 11000) BloodTests.Add(bloodTest.getWBC() + " - HIGH");
-
-            else BloodTests.Add("WBC - " + bloodTest.getWBC() + " - Normal");
-
-            if (bloodTest.getNeutrophil() < 28) BloodTests.Add(bloodTest.getNeutrophil() + " - LOW");
-
-            else if (bloodTest.getNeutrophil() > 54) BloodTests.Add(bloodTest.getNeutrophil() + " - HIGH");
-
-            else BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + " - Normal");
-
-            if (bloodTest.getLymphocytes() < 36) BloodTests.Add("Low Lymphocytes count");
-
-            else if (bloodTest.getLymphocytes() > 52) BloodTests.Add("High Lymphocytes count");
-
-            else BloodTests.Add("Lymphocytes - " + bloodTest.getLymphocytes() + " - Normal");
-
-            if (bloodTest.getRBC() < 4.5) BloodTests.Add("Low red cells count");
-
-            else if (bloodTest.getRBC() > 6) BloodTests.Add("High red cells count");
-
-            else BloodTests.Add("RBC - " + bloodTest.getRBC() + " - Normal");
-
-            if (PatientList[0].getMale())
-            {
-                if (bloodTest.getHCT() < 37) BloodTests.Add("Low HCT count");
-                else if (bloodTest.getHCT() > 54) BloodTests.Add("High HCT count");
-                else BloodTests.Add("HCT - " + bloodTest.getHCT() + " - Normal");
-            }
-            else
-            {
-                if (bloodTest.getHCT() < 33) BloodTests.Add("Low HCT count");
-                else if (bloodTest.getHCT() > 47) BloodTests.Add("High HCT count");
-                else BloodTests.Add("HCT - " + bloodTest.getHCT() + " - Normal");
-            }
-
-            if (bloodTest.getUrea() < 17) BloodTests.Add("Low urea count");
-
-            else if (bloodTest.getUrea() > 43) BloodTests.Add("High urea count");
-
-            else BloodTests.Add("Urea - " + bloodTest.getUrea() + " - Normal");
-
-            if (PatientList[0].getMale())
-            {
-                if (bloodTest.getHemoglobin() < 12) BloodTests.Add("Low hemoglobin count");
-                else if(bloodTest.getHemoglobin() > 18) BloodTests.Add("High hemoglobin count");
-                else BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Normal");
-            }
-            else
-            {
-                if (bloodTest.getHemoglobin() < 12) BloodTests.Add("Low hemoglobin count");
-                else if(bloodTest.getHemoglobin() > 16) BloodTests.Add("High hemoglobin count");
-                else BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Normal");
-            }
-
-            if (bloodTest.getCrtn() < 0.6) BloodTests.Add("Low creatin count");
-
-            else if(bloodTest.getCrtn() > 1) BloodTests.Add("High creatin count");
-
-            else BloodTests.Add("Crtn - " + bloodTest.getCrtn() + " - Normal");
-
-            if (PatientList[0].getMale())
-            {
-                if (bloodTest.getIron() < 60) BloodTests.Add("Low iron count");
-                else if(bloodTest.getIron() > 160) BloodTests.Add("High iron count");
-                else BloodTests.Add("Iron - " + bloodTest.getIron() + " - Normal");
-            }
-            else
-            {
-                if (bloodTest.getIron() < 48) BloodTests.Add("Low iron count");
-                else if(bloodTest.getIron() > 128) BloodTests.Add("High iron count");
-                else BloodTests.Add("Iron - " + bloodTest.getIron() + " - Normal");
-            }
-
-            if (PatientList[0].getMale())
-            {
-                if (bloodTest.getHDL() < 29) BloodTests.Add("Low HDL count");
-                else if(bloodTest.getHDL() > 62) BloodTests.Add("High HDL count");
-                else BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Normal");
-            }
-            else
-            {
-                if (bloodTest.getHDL() < 34) BloodTests.Add("Low HDL count");
-                else if(bloodTest.getHDL() > 82) BloodTests.Add("High HDL count");
-                else BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Normal");
-            }
-
-            if (bloodTest.getAP() < 60) BloodTests.Add("Low AP count");
-
-            else if(bloodTest.getAP() > 120) BloodTests.Add("High AP count");
-
-            else BloodTests.Add("AP - " + bloodTest.getAP() + " - Normal");
         }
 
         private void button1_Click(object sender, EventArgs e)

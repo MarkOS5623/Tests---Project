@@ -16,6 +16,7 @@ namespace Tests___Project
         {
             InitializeComponent();
             BoxLoader();
+            ComboInitializer();
         }
 
         public void BoxLoader() {
@@ -43,6 +44,30 @@ namespace Tests___Project
         }
 
         private void DoneButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void ComboInitializer()
+        {
+            int n = Questionnaire.Diagnostics.Count;
+            String[] KeysArray;
+            if (n > 0)
+                for (int i = 0; i < n; i++)
+                    comboBox1.Items.Add(Questionnaire.Diagnostics[i]);
+            else
+            {
+                KeysArray = MainPage.Dict.Keys.ToArray();
+                n = KeysArray.Length;
+                for (int i = 0; i < n; i++)
+                    comboBox1.Items.Add(KeysArray[i]);
+            }
+        }
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
         }

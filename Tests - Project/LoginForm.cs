@@ -7,28 +7,12 @@ namespace Tests___Project
         public LoginForm()
         {
             DoctorList = new List<Doctor>();
-            DoctorList.Add(new Doctor("Markos56","Markos56!","315126201"));
+            DoctorList.Add(new Doctor("Admin45", "Admin45!", "315126201"));
             InitializeComponent();
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
         {
-        }
-        public void createExcel()
-        {
-            Excel excel = new Excel();
-            excel.CreateNewFile();
-            excel.CreateNewSheet();
-            excel.Save();
-            excel.Close();
-        }
-
-        public static void WriteToExcel(int col, int row, String s)
-        {
-            Excel excel = new Excel(@"UserData.xlsx", 1);
-            excel.WriteToCell(col, row, s);
-            excel.Save();
-            excel.Close();
         }
        
         private void UsernameBox_TextChanged(object sender, EventArgs e)
@@ -56,8 +40,9 @@ namespace Tests___Project
         {
             for (int i = 0; i < DoctorList.Count; i++)
             {
-                if (UsernameBox.Text == DoctorList[i].getUsername()) { 
-                    if(PasswordBox.Text == DoctorList[i].getPassword())
+                if (UsernameBox.Text == DoctorList[i].getUsername())
+                {
+                    if (PasswordBox.Text == DoctorList[i].getPassword())
                     {
                         this.Hide();
                         MainPage f = new MainPage();
@@ -65,11 +50,11 @@ namespace Tests___Project
                         PasswordBox.Text = "";
                         f.Closed += (s, args) => this.Close();
                         f.Show();
+                        return;
                     }
-                    else MessageBox.Show("Incorrect password!!");
                 }
-                else MessageBox.Show("Incorrect username!!");
             }
+            MessageBox.Show("Username or password are incorrect!");
         }
     }
 }
