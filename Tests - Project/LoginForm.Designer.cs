@@ -67,7 +67,7 @@
             this.UsernameBox.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.UsernameBox.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.UsernameBox.Location = new System.Drawing.Point(422, 398);
-            this.UsernameBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.UsernameBox.Margin = new System.Windows.Forms.Padding(4);
             this.UsernameBox.Name = "UsernameBox";
             this.UsernameBox.Size = new System.Drawing.Size(265, 38);
             this.UsernameBox.TabIndex = 2;
@@ -78,7 +78,7 @@
             this.PasswordBox.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.PasswordBox.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.PasswordBox.Location = new System.Drawing.Point(422, 529);
-            this.PasswordBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.PasswordBox.Margin = new System.Windows.Forms.Padding(4);
             this.PasswordBox.Name = "PasswordBox";
             this.PasswordBox.PasswordChar = '*';
             this.PasswordBox.Size = new System.Drawing.Size(265, 38);
@@ -90,7 +90,7 @@
             this.LoginButton.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.LoginButton.ForeColor = System.Drawing.Color.Red;
             this.LoginButton.Location = new System.Drawing.Point(422, 610);
-            this.LoginButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.LoginButton.Margin = new System.Windows.Forms.Padding(4);
             this.LoginButton.Name = "LoginButton";
             this.LoginButton.Size = new System.Drawing.Size(160, 70);
             this.LoginButton.TabIndex = 4;
@@ -104,7 +104,7 @@
             this.RegisterButton.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.RegisterButton.ForeColor = System.Drawing.Color.Red;
             this.RegisterButton.Location = new System.Drawing.Point(13, 790);
-            this.RegisterButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RegisterButton.Margin = new System.Windows.Forms.Padding(4);
             this.RegisterButton.Name = "RegisterButton";
             this.RegisterButton.Size = new System.Drawing.Size(160, 70);
             this.RegisterButton.TabIndex = 5;
@@ -118,7 +118,7 @@
             this.ExitButton.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.ExitButton.ForeColor = System.Drawing.Color.Red;
             this.ExitButton.Location = new System.Drawing.Point(929, 786);
-            this.ExitButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ExitButton.Margin = new System.Windows.Forms.Padding(4);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(160, 70);
             this.ExitButton.TabIndex = 6;
@@ -131,7 +131,7 @@
             this.panel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel1.BackgroundImage")));
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel1.Location = new System.Drawing.Point(377, 150);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(330, 196);
             this.panel1.TabIndex = 7;
@@ -167,7 +167,7 @@
             this.Controls.Add(this.Username);
             this.Font = new System.Drawing.Font("Yu Gothic UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "LoginForm";
             this.Text = "LoginForm";
             this.Load += new System.EventHandler(this.LoginForm_Load);

@@ -95,7 +95,7 @@ namespace Tests___Project
                 BloodTest bloodTest = Utility.ExcelToBlood();
                 PatientList[0].setResults(bloodTest);
                 flag = true;
-                f.AdultdiseaseInator();
+                f.DiseaseInator();
                 Utility.BloodResults();
                 
                 flag3 = true; // Prevents doubling of diagnostics
@@ -169,6 +169,11 @@ namespace Tests___Project
         }
 
         private void Patient_Info_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ExcelButton_Click(object sender, EventArgs e)
         {
 
         }

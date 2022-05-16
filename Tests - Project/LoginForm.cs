@@ -1,5 +1,6 @@
+using System.Runtime.InteropServices;
+using Excel = Microsoft.Office.Interop.Excel;
 namespace Tests___Project
-
 {
     public partial class LoginForm : Form
     {
@@ -8,9 +9,11 @@ namespace Tests___Project
         {
             DoctorList = new List<Doctor>();
             DoctorList.Add(new Doctor("Admin45", "Admin45!", "315126201"));
-            //Utility.createExcel();
+            Utility.CreateExcel();
+            Utility.WriteCell();
             InitializeComponent();
         }
+        
         private void LoginForm_Load(object sender, EventArgs e)
         {
         }
@@ -68,5 +71,6 @@ namespace Tests___Project
         {
 
         }
+
     }
 }

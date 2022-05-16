@@ -91,24 +91,67 @@ namespace Tests___Project
 
             this.Close();
         }
-
-        public void AdultdiseaseInator()
+        public void DiseaseInator()
         {
             BloodTest bloodTest = MainPage.PatientList[0].getresults();
-            if (bloodTest.getWBC() < 4500) {
-                if(!Alreadyin("Viral infection", Diagnostics))
-                    Diagnostics.Add("Viral infection");
-                if (!Alreadyin("Cancer", Diagnostics))
-                    Diagnostics.Add("Cancer"); }
+            if (MainPage.PatientList[0].getAge() >= 18)
+            {
+                if (bloodTest.getWBC() < 4500)
+                {
+                    if (!Alreadyin("Viral infection", Diagnostics))
+                        Diagnostics.Add("Viral infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                }
 
-            if (bloodTest.getWBC() > 11000) {
-                if (Fever.Checked && !Alreadyin("Infection", Diagnostics)) Diagnostics.Add("Infection");
-                if (!Alreadyin("Cancer", Diagnostics))
-                    Diagnostics.Add("Cancer");
-                if (!Alreadyin("Blood disease", Diagnostics))
-                    Diagnostics.Add("Blood disease"); }
+                if (bloodTest.getWBC() > 11000)
+                {
+                    if (Fever.Checked && !Alreadyin("Infection", Diagnostics)) Diagnostics.Add("Infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                    if (!Alreadyin("Blood disease", Diagnostics))
+                        Diagnostics.Add("Blood disease");
+                }
+            }
+            else if(MainPage.PatientList[0].getAge() >= 4 && MainPage.PatientList[0].getAge() <= 17)
+            {
+                if (bloodTest.getWBC() < 5500)
+                {
+                    if (!Alreadyin("Viral infection", Diagnostics))
+                        Diagnostics.Add("Viral infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                }
 
-            if (bloodTest.getNeutrophil() < 28) {
+                if (bloodTest.getWBC() > 15500)
+                {
+                    if (Fever.Checked && !Alreadyin("Infection", Diagnostics)) Diagnostics.Add("Infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                    if (!Alreadyin("Blood disease", Diagnostics))
+                        Diagnostics.Add("Blood disease");
+                }
+            }
+            else if (MainPage.PatientList[0].getAge() >= 0 && MainPage.PatientList[0].getAge() <= 3)
+            {
+                if (bloodTest.getWBC() < 6000)
+                {
+                    if (!Alreadyin("Viral infection", Diagnostics))
+                        Diagnostics.Add("Viral infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                }
+
+                if (bloodTest.getWBC() > 17500)
+                {
+                    if (Fever.Checked && !Alreadyin("Infection", Diagnostics)) Diagnostics.Add("Infection");
+                    if (!Alreadyin("Cancer", Diagnostics))
+                        Diagnostics.Add("Cancer");
+                    if (!Alreadyin("Blood disease", Diagnostics))
+                        Diagnostics.Add("Blood disease");
+                }
+            }
+                if (bloodTest.getNeutrophil() < 28) {
                 if (!Alreadyin("Cancer", Diagnostics))
                     Diagnostics.Add("Cancer");
                 if (!Alreadyin("Infection", Diagnostics))
@@ -175,15 +218,53 @@ namespace Tests___Project
                     if (Bleeding.Checked && (!Alreadyin("Bleeding", Diagnostics))) Diagnostics.Add("Bleeding"); }
                 if (bloodTest.getHemoglobin() > 16) { } }
 
-            if (bloodTest.getCrtn() < 0.6 && (!Alreadyin("Malnourished", Diagnostics))) Diagnostics.Add("Malnourished");
+            if (MainPage.PatientList[0].getAge() >= 3 && MainPage.PatientList[0].getAge() <= 17) {
+                if (bloodTest.getCrtn() < 0.5 && (!Alreadyin("Malnourished", Diagnostics))) Diagnostics.Add("Malnourished");
 
-            if (bloodTest.getCrtn() > 1) {
-                if (Diarrhea.Checked) { }
-                else {
-                    if (!Alreadyin("Kidney disease", Diagnostics))
-                        Diagnostics.Add("Kidney disease");
-                    if (!Alreadyin("Muscle disease", Diagnostics))
-                        Diagnostics.Add("Muscle disease"); } }
+                if (bloodTest.getCrtn() > 1)
+                {
+                    if (Diarrhea.Checked) { }
+                    else
+                    {
+                        if (!Alreadyin("Kidney disease", Diagnostics))
+                            Diagnostics.Add("Kidney disease");
+                        if (!Alreadyin("Muscle disease", Diagnostics))
+                            Diagnostics.Add("Muscle disease");
+                    }
+                }
+            }
+            if (MainPage.PatientList[0].getAge() >= 18 && MainPage.PatientList[0].getAge() <= 59)
+            {
+                if (bloodTest.getCrtn() < 0.6 && (!Alreadyin("Malnourished", Diagnostics))) Diagnostics.Add("Malnourished");
+
+                if (bloodTest.getCrtn() > 1)
+                {
+                    if (Diarrhea.Checked) { }
+                    else
+                    {
+                        if (!Alreadyin("Kidney disease", Diagnostics))
+                            Diagnostics.Add("Kidney disease");
+                        if (!Alreadyin("Muscle disease", Diagnostics))
+                            Diagnostics.Add("Muscle disease");
+                    }
+                }
+            }
+            if (MainPage.PatientList[0].getAge() >= 60)
+            {
+                if (bloodTest.getCrtn() < 0.6 && (!Alreadyin("Malnourished", Diagnostics))) Diagnostics.Add("Malnourished");
+
+                if (bloodTest.getCrtn() > 1.2)
+                {
+                    if (Diarrhea.Checked) { }
+                    else
+                    {
+                        if (!Alreadyin("Kidney disease", Diagnostics))
+                            Diagnostics.Add("Kidney disease");
+                        if (!Alreadyin("Muscle disease", Diagnostics))
+                            Diagnostics.Add("Muscle disease");
+                    }
+                }
+            }
 
             if (MainPage.PatientList[0].getMale()) {
                 if (bloodTest.getIron() < 60) {

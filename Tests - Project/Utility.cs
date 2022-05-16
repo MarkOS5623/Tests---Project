@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Excel = Microsoft.Office.Interop.Excel;
+using System.Runtime.InteropServices;
 
 namespace Tests___Project
 {
@@ -109,23 +111,61 @@ namespace Tests___Project
 
         public static BloodTest ExcelToBlood()
         {
-            Excel excel = new Excel(@"Data.xlsx", 1);
-            int WBC = Convert.ToInt32(excel.ReadCell(2, 1));
-            float Neutrophil = Convert.ToSingle(excel.ReadCell(2, 2));
-            float Lymphocytes = Convert.ToSingle(excel.ReadCell(2, 3));
-            float RBC = Convert.ToSingle(excel.ReadCell(2, 4));
-            float HCT = Convert.ToSingle(excel.ReadCell(2, 5));
-            float Urea = Convert.ToSingle(excel.ReadCell(2, 6));
-            float Hemoglobin = Convert.ToSingle(excel.ReadCell(2, 7));
-            float Crtn = Convert.ToSingle(excel.ReadCell(2, 8));
-            int Iron = Convert.ToInt32(excel.ReadCell(2, 9));
-            float HDL = Convert.ToSingle(excel.ReadCell(2, 10));
-            int AP = Convert.ToInt32(excel.ReadCell(2, 11));
+            int WBC = Convert.ToInt32(ReadCell(2, 1));
+            float Neutrophil = Convert.ToSingle(ReadCell(2, 2));
+            float Lymphocytes = Convert.ToSingle(ReadCell(2, 3));
+            float RBC = Convert.ToSingle(ReadCell(2, 4));
+            float HCT = Convert.ToSingle(ReadCell(2, 5));
+            float Urea = Convert.ToSingle(ReadCell(2, 6));
+            float Hemoglobin = Convert.ToSingle(ReadCell(2, 7));
+            float Crtn = Convert.ToSingle(ReadCell(2, 8));
+            int Iron = Convert.ToInt32(ReadCell(2, 9));
+            float HDL = Convert.ToSingle(ReadCell(2, 10));
+            int AP = Convert.ToInt32(ReadCell(2, 11));
             BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
-            excel.Close();
             return bloodTest;
         }
+        public static String ReadCell(int row, int col)
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            String str;
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open("Data.xlsx", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+            str = (xlWorkSheet.Cells[row, col] as Excel.Range).Text.ToString();
+            xlWorkBook.Close(true, null, null);
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
+            return str;
+        }
+        public static void WriteCell()
+        {
+            Excel.Application xlApp;
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
 
+            xlApp = new Excel.Application();
+            xlWorkBook = xlApp.Workbooks.Open("Documents\\PatientData.xlsx", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            xlWorkSheet.Cells[1, 1] = "ID";
+            xlWorkSheet.Cells[1, 2] = "Name";
+            xlWorkSheet.Cells[2, 1] = "1";
+            xlWorkSheet.Cells[2, 2] = "One";
+            xlWorkSheet.Cells[3, 1] = "2";
+            xlWorkSheet.Cells[3, 2] = "Two";
+
+            xlWorkBook.Close(true, null, null);
+            xlApp.Quit();
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
+        }
         public static bool isValidIsraeliID(string id)
         {
             if (id.Length < 9) return false;
@@ -139,7 +179,35 @@ namespace Tests___Project
             }
             return (counter % 10 == 0);
         }
+        public static void CreateExcel()
+        {
+            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
 
+            if (xlApp == null)
+            {
+                MessageBox.Show("Excel is not properly installed!!");
+                return;
+            }
+
+
+            Excel.Workbook xlWorkBook;
+            Excel.Worksheet xlWorkSheet;
+            object misValue = System.Reflection.Missing.Value;
+
+            xlWorkBook = xlApp.Workbooks.Add(misValue);
+            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
+
+            xlWorkBook.SaveAs("PatientData.xlsx", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
+            xlWorkBook.Close(true, misValue, misValue);
+            xlApp.Quit();
+
+            Marshal.ReleaseComObject(xlWorkSheet);
+            Marshal.ReleaseComObject(xlWorkBook);
+            Marshal.ReleaseComObject(xlApp);
+
+            MessageBox.Show("Excel file contain the patients data created , you can find the file in your Documents folder");
+        }
+    
         public static bool isValidUsername(string username)
         {
             if (username.Length < 6 && username.Length > 8) return false;
@@ -191,21 +259,6 @@ namespace Tests___Project
             SpecialNum = password.Length - IntNum - LetterNum;
             return (IntNum > 0 && LetterNum > 0 && SpecialNum > 0);
         }
-        public static void createExcel()
-        {
-            Excel excel = new Excel(@"Data.xlsx", 1);
-            excel.CreateNewFile();
-            excel.CreateNewSheet();
-            excel.Save();
-            excel.Close();
-        }
 
-        public static void WriteToExcel(int row, int col, String s)
-        {
-            Excel excel = new Excel(@"UserData.xlsx", 1);
-            excel.WriteToCell(col, row, s);
-            excel.Save();
-            excel.Close();
-        }
     }
 }
