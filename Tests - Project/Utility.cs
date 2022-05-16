@@ -196,7 +196,7 @@ namespace Tests___Project
             Excel excel = new Excel(@"Data.xlsx", 1);
             excel.CreateNewFile();
             excel.CreateNewSheet();
-            excel.SaveAs(@"Data.xlsx");
+            excel.Save();
             excel.Close();
         }
 
