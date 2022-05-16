@@ -22,7 +22,7 @@ namespace Tests___Project
         {
             int index;
             LoginForm f = new LoginForm();
-            if (UsernameBox.Text == "" || PasswordBox.Text == "" || IDBox.Text == "")
+            if (Utility.isEmpty(UsernameBox.Text) || Utility.isEmpty(PasswordBox.Text)|| Utility.isEmpty(IDBox.Text))
                 MessageBox.Show("Please fill the whole form.");
             else
             {
@@ -36,6 +36,15 @@ namespace Tests___Project
                     f.Show();
                 }
             }
+        }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid);
         }
         private bool inputTester()
         {
@@ -64,7 +73,10 @@ namespace Tests___Project
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            Close();
+            this.Hide();
+            LoginForm f = new LoginForm();
+            f.Closed += (s, args) => this.Close();
+            f.Show();
         }
 
         private void ClearButton_Click(object sender, EventArgs e)

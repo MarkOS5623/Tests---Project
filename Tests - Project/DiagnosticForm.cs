@@ -42,11 +42,19 @@ namespace Tests___Project
         private void BloodResults_SelectedIndexChanged(object sender, EventArgs e)
         {
         }
-
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid);
+        }
         private void DoneButton_Click(object sender, EventArgs e)
         {
             MainPage.PatientList[0].setIllness(comboBox1.Text);
-            MainPage.PatientList[0].setTreatment(comboBox1.Text);
+            MainPage.PatientList[0].setTreatment(MainPage.Dict[comboBox1.Text]);
             this.Close();
         }
         private void ComboInitializer()
@@ -72,6 +80,11 @@ namespace Tests___Project
         private void CancelButton_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void DiagnosticForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

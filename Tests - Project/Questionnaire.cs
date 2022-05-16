@@ -226,5 +226,18 @@ namespace Tests___Project
                 if (!Alreadyin("Using different medicines", Diagnostics))
                     Diagnostics.Add("Using different medicines");}
         }
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid);
+        }
+        private void Questionnaire_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

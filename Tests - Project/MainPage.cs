@@ -40,7 +40,7 @@ namespace Tests___Project
         public MainPage()
         {
             InitializeComponent();
-            InitializeTable();
+            
             DiagnosticForm f = new DiagnosticForm();
         }
 
@@ -50,25 +50,22 @@ namespace Tests___Project
             {
                 Questionnaire f = new Questionnaire();
                 f.ShowDialog();
-                InitializeTable();
+                
                 flag2 = true; // Prevents doubling of symptoms
                 flag4 = true;
             }
-            else if (flag4 = true) MessageBox.Show("The patient has already filled the form!!");
+            else if (flag4 == true) MessageBox.Show("The patient has already filled the form!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
-        public void InitializeTable()
+        protected override void OnPaint(PaintEventArgs e)
         {
-            int n = Questionnaire.Symptoms.Count;
-            for (int i = 0; i < n; i++)
-                if (flag2 == false)
-                    SymptomsBox.Items.Add(Questionnaire.Symptoms[i]);
-
-            int k = Questionnaire.Diagnostics.Count;
-            for (int i = 0; i < k; i++)
-                if (flag3 == false)
-                    Illments.Items.Add(Questionnaire.Diagnostics[i]);
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid);
         }
         public void InitializeInfo()
         {
@@ -82,6 +79,8 @@ namespace Tests___Project
             Patient_Info.Items.Add("Age: " + Zero.getAge() + " years old");
             Patient_Info.Items.Add("Height: " + Zero.getHeight() + " Cm");
             Patient_Info.Items.Add("Weight: " + Zero.getWeight() + " Kg");
+            Patient_Info.Items.Add("Disease: " + Zero.getIllness());
+            Patient_Info.Items.Add("Treatment: " + Zero.getTreatment());
         }
         private void SymptomsBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -98,10 +97,10 @@ namespace Tests___Project
                 flag = true;
                 f.AdultdiseaseInator();
                 Utility.BloodResults();
-                InitializeTable();
+                
                 flag3 = true; // Prevents doubling of diagnostics
             }
-            else if (flag = true) MessageBox.Show("The patient's blood test has already been imported!!");
+            else if (flag == true) MessageBox.Show("The patient's blood test has already been imported!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
@@ -110,6 +109,7 @@ namespace Tests___Project
             if (PatientList.Count == 0) {
                 PatientForm f = new PatientForm();
                 f.ShowDialog();
+                if(PatientList.Count != 0)
                 InitializeInfo();}
             else MessageBox.Show("Only one patient can be admited at the time!!");
         }
@@ -134,6 +134,8 @@ namespace Tests___Project
         {
             DiagnosticForm f = new DiagnosticForm();
             f.ShowDialog();
+            Patient_Info.Items.Clear();
+            InitializeInfo();
         }
 
         
@@ -158,8 +160,6 @@ namespace Tests___Project
             PatientList.Clear();
             BloodTests.Clear();
             Patient_Info.Items.Clear();
-            SymptomsBox.Items.Clear();
-            Illments.Items.Clear();
             Questionnaire.Diagnostics.Clear();
             Questionnaire.Symptoms.Clear();
             flag = false;

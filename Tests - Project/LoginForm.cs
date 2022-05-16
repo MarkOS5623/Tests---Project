@@ -11,14 +11,20 @@ namespace Tests___Project
             Utility.createExcel();
             InitializeComponent();
         }
-
         private void LoginForm_Load(object sender, EventArgs e)
         {
         }
-       
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            ControlPaint.DrawBorder(e.Graphics, ClientRectangle,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid,
+                                  Color.Red, 5, ButtonBorderStyle.Solid);
+        }
         private void UsernameBox_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -36,9 +42,9 @@ namespace Tests___Project
             f.Closed += (s, args) => this.Close();
             f.Show();
         }
-
         private void LoginButton_Click(object sender, EventArgs e)
         {
+            
             for (int i = 0; i < DoctorList.Count; i++)
             {
                 if (UsernameBox.Text == DoctorList[i].getUsername())
@@ -56,6 +62,11 @@ namespace Tests___Project
                 }
             }
             MessageBox.Show("Username or password are incorrect!");
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

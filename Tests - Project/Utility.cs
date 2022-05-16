@@ -149,7 +149,39 @@ namespace Tests___Project
                 return true;
             else return false;
         }
-
+        public static bool isEmpty(string s) { return s.Length == 0; }
+        public static bool isValidName(string name)
+        {
+            if (name.Length < 2) return false;
+            var LetterNum = name.Count(char.IsLetter);
+            var IntNum = name.Count(x => Char.IsDigit(x));
+            if (IntNum == 0 && (name.Length == LetterNum))
+                return true;
+            else return false;
+        }
+        public static bool isValidAge(string age)
+        {
+            if (!isEmpty(age))
+            {
+                var IntNum = age.Count(x => Char.IsDigit(x));
+                int Age = Int32.Parse(age);
+                if (age.Length == IntNum && Age > 0 && Age <= 120)
+                    return true;
+                else return false;
+            } else return false;
+        }
+        public static bool isValidWeight(string weight)
+        {
+            if (!isEmpty(weight))
+            {
+                var IntNum = weight.Count(x => Char.IsDigit(x));
+                int Weight = Int32.Parse(weight);
+                if (weight.Length == IntNum && Weight > 0)
+                    return true;
+                else return false;
+            }
+            else return false;
+        }
         public static bool isValidPassword(string password)
         {
             if (password.Length < 8 && password.Length > 10) return false;
@@ -164,7 +196,7 @@ namespace Tests___Project
             Excel excel = new Excel(@"Data.xlsx", 1);
             excel.CreateNewFile();
             excel.CreateNewSheet();
-            excel.Save();
+            excel.SaveAs(@"Data.xlsx");
             excel.Close();
         }
 
