@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
+using ClosedXML.Excel;
+using Excel = ClosedXML.Excel;
 using System.Runtime.InteropServices;
 
-namespace Tests___Project
-{
-    public class Utility
-    {
-        public static void BloodResults()
-        {
+namespace Tests___Project {
+    public class Utility {
+        static XLWorkbook tData = new XLWorkbook("Resorces/TestData.xlsx");
+        static XLWorkbook docDB = new XLWorkbook("Resorces/DoctorDB.xlsx");
+        static XLWorkbook patDB = new XLWorkbook("Resorces/PatientDB.xlsx");
+        public static void BloodResults() {
             BloodTest bloodTest = MainPage.PatientList[0].getresults();
 
             if (bloodTest.getWBC() < 4500) MainPage.BloodTests.Add(bloodTest.getWBC() + " - LOW");
@@ -20,166 +21,135 @@ namespace Tests___Project
 
             else MainPage.BloodTests.Add("WBC - " + bloodTest.getWBC() + " - Normal");
 
-            if (bloodTest.getNeutrophil() < 28) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + " - LOW");
+            if (bloodTest.getNeutrophil() < 28) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + "% - LOW");
 
-            else if (bloodTest.getNeutrophil() > 54) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + " - HIGH");
+            else if (bloodTest.getNeutrophil() > 54) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + "% - HIGH");
 
-            else MainPage.BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + " - Normal");
+            else MainPage.BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + "% - Normal");
 
-            if (bloodTest.getLymphocytes() < 36) MainPage.BloodTests.Add("Low Lymphocytes count");
+            if (bloodTest.getLymphocytes() < 36) 
+                MainPage.BloodTests.Add("Lymphocytes - " + bloodTest.getLymphocytes() + "% - Low");
 
-            else if (bloodTest.getLymphocytes() > 52) MainPage.BloodTests.Add("High Lymphocytes count");
+            else if 
+                (bloodTest.getLymphocytes() > 52) MainPage.BloodTests.Add("Lymphocytes - " + bloodTest.getLymphocytes() + " % - High");
 
-            else MainPage.BloodTests.Add("Lymphocytes - " + bloodTest.getLymphocytes() + " - Normal");
+            else MainPage.BloodTests.Add("Lymphocytes - " + bloodTest.getLymphocytes() + "% - Normal");
 
-            if (bloodTest.getRBC() < 4.5) MainPage.BloodTests.Add("Low red cells count");
+            if (bloodTest.getRBC() < 4.5) MainPage.BloodTests.Add("RBC - " + bloodTest.getRBC() + " - Low");
 
-            else if (bloodTest.getRBC() > 6) MainPage.BloodTests.Add("High red cells count");
+            else if (bloodTest.getRBC() > 6) MainPage.BloodTests.Add("RBC - " + bloodTest.getRBC() + " - High");
 
             else MainPage.BloodTests.Add("RBC - " + bloodTest.getRBC() + " - Normal");
 
-            if (MainPage.PatientList[0].getMale())
-            {
-                if (bloodTest.getHCT() < 37) MainPage.BloodTests.Add("Low HCT count");
-                else if (bloodTest.getHCT() > 54) MainPage.BloodTests.Add("High HCT count");
-                else MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + " - Normal");
+            if (MainPage.PatientList[0].getSex()) {
+                if (bloodTest.getHCT() < 37) MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - Low");
+                else if (bloodTest.getHCT() > 54) MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - High");
+                else MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - Normal");
             }
-            else
-            {
-                if (bloodTest.getHCT() < 33) MainPage.BloodTests.Add("Low HCT count");
-                else if (bloodTest.getHCT() > 47) MainPage.BloodTests.Add("High HCT count");
-                else MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + " - Normal");
+            else {
+                if (bloodTest.getHCT() < 33) MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - Low");
+                else if (bloodTest.getHCT() > 47) MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - High");
+                else MainPage.BloodTests.Add("HCT - " + bloodTest.getHCT() + "% - Normal");
             }
 
-            if (bloodTest.getUrea() < 17) MainPage.BloodTests.Add("Low urea count");
+            if (bloodTest.getUrea() < 17) MainPage.BloodTests.Add("Urea - " + bloodTest.getUrea() + " - Low");
 
-            else if (bloodTest.getUrea() > 43) MainPage.BloodTests.Add("High urea count");
+            else if (bloodTest.getUrea() > 43) MainPage.BloodTests.Add("Urea - " + bloodTest.getUrea() + " - High");
 
             else MainPage.BloodTests.Add("Urea - " + bloodTest.getUrea() + " - Normal");
 
-            if (MainPage.PatientList[0].getMale())
-            {
-                if (bloodTest.getHemoglobin() < 12) MainPage.BloodTests.Add("Low hemoglobin count");
-                else if (bloodTest.getHemoglobin() > 18) MainPage.BloodTests.Add("High hemoglobin count");
+            if (MainPage.PatientList[0].getSex()) {
+                if (bloodTest.getHemoglobin() < 12) MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Low");
+                else if (bloodTest.getHemoglobin() > 18) MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - High");
                 else MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Normal");
             }
-            else
-            {
-                if (bloodTest.getHemoglobin() < 12) MainPage.BloodTests.Add("Low hemoglobin count");
-                else if (bloodTest.getHemoglobin() > 16) MainPage.BloodTests.Add("High hemoglobin count");
+            else {
+                if (bloodTest.getHemoglobin() < 12) MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Low");
+                else if (bloodTest.getHemoglobin() > 16) MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - High");
                 else MainPage.BloodTests.Add("Hemoglobin - " + bloodTest.getHemoglobin() + " - Normal");
             }
 
-            if (bloodTest.getCrtn() < 0.6) MainPage.BloodTests.Add("Low creatin count");
+            if (bloodTest.getCrtn() < 0.6) MainPage.BloodTests.Add("Crtn - " + bloodTest.getCrtn() + " - Low");
 
-            else if (bloodTest.getCrtn() > 1) MainPage.BloodTests.Add("High creatin count");
+            else if (bloodTest.getCrtn() > 1) MainPage.BloodTests.Add("Crtn - " + bloodTest.getCrtn() + " - High");
 
             else MainPage.BloodTests.Add("Crtn - " + bloodTest.getCrtn() + " - Normal");
 
-            if (MainPage.PatientList[0].getMale())
-            {
-                if (bloodTest.getIron() < 60) MainPage.BloodTests.Add("Low iron count");
-                else if (bloodTest.getIron() > 160) MainPage.BloodTests.Add("High iron count");
+            if (MainPage.PatientList[0].getSex()) {
+                if (bloodTest.getIron() < 60) MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - Low");
+                else if (bloodTest.getIron() > 160) MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - High");
                 else MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - Normal");
             }
-            else
-            {
-                if (bloodTest.getIron() < 48) MainPage.BloodTests.Add("Low iron count");
-                else if (bloodTest.getIron() > 128) MainPage.BloodTests.Add("High iron count");
+            else {
+                if (bloodTest.getIron() < 48) MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - Low");
+                else if (bloodTest.getIron() > 128) MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - High");
                 else MainPage.BloodTests.Add("Iron - " + bloodTest.getIron() + " - Normal");
             }
 
-            if (MainPage.PatientList[0].getMale())
-            {
-                if (bloodTest.getHDL() < 29) MainPage.BloodTests.Add("Low HDL count");
-                else if (bloodTest.getHDL() > 62) MainPage.BloodTests.Add("High HDL count");
+            if (MainPage.PatientList[0].getSex()) {
+                if (bloodTest.getHDL() < 29) MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Low");
+                else if (bloodTest.getHDL() > 62) MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - High");
                 else MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Normal");
             }
-            else
-            {
-                if (bloodTest.getHDL() < 34) MainPage.BloodTests.Add("Low HDL count");
-                else if (bloodTest.getHDL() > 82) MainPage.BloodTests.Add("High HDL count");
+            else {
+                if (bloodTest.getHDL() < 34) MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Low");
+                else if (bloodTest.getHDL() > 82) MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - High");
                 else MainPage.BloodTests.Add("HDL - " + bloodTest.getHDL() + " - Normal");
             }
 
-            if (bloodTest.getAP() < 60) MainPage.BloodTests.Add("Low AP count");
+            if (bloodTest.getAP() < 60) MainPage.BloodTests.Add("AP - " + bloodTest.getAP() + " - Low");
 
-            else if (bloodTest.getAP() > 120) MainPage.BloodTests.Add("High AP count");
+            else if (bloodTest.getAP() > 120) MainPage.BloodTests.Add("AP - " + bloodTest.getAP() + " - High");
 
             else MainPage.BloodTests.Add("AP - " + bloodTest.getAP() + " - Normal");
         }
 
-        public static BloodTest ExcelToBlood()
-        {
-            int WBC = Convert.ToInt32(ReadCell(2, 1));
-            float Neutrophil = Convert.ToSingle(ReadCell(2, 2));
-            float Lymphocytes = Convert.ToSingle(ReadCell(2, 3));
-            float RBC = Convert.ToSingle(ReadCell(2, 4));
-            float HCT = Convert.ToSingle(ReadCell(2, 5));
-            float Urea = Convert.ToSingle(ReadCell(2, 6));
-            float Hemoglobin = Convert.ToSingle(ReadCell(2, 7));
-            float Crtn = Convert.ToSingle(ReadCell(2, 8));
-            int Iron = Convert.ToInt32(ReadCell(2, 9));
-            float HDL = Convert.ToSingle(ReadCell(2, 10));
-            int AP = Convert.ToInt32(ReadCell(2, 11));
+        public static BloodTest ExcelToBlood() {
+            int WBC = Convert.ToInt32(ReadCell(1, 2, 1));
+            float Neutrophil = Convert.ToSingle(ReadCell(1, 2, 2));
+            float Lymphocytes = Convert.ToSingle(ReadCell(1, 2, 3));
+            float RBC = Convert.ToSingle(ReadCell(1, 2, 4));
+            float HCT = Convert.ToSingle(ReadCell(1, 2, 5));
+            float Urea = Convert.ToSingle(ReadCell(1, 2, 6));
+            float Hemoglobin = Convert.ToSingle(ReadCell(1, 2, 7));
+            float Crtn = Convert.ToSingle(ReadCell(1, 2, 8));
+            int Iron = Convert.ToInt32(ReadCell(1, 2, 9));
+            float HDL = Convert.ToSingle(ReadCell(1, 2, 10));
+            int AP = Convert.ToInt32(ReadCell(1, 2, 11));
             BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
             return bloodTest;
         }
-        public static String ReadCell(int row, int col)
-        {
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            String str;
-            xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open("Data.xlsx", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-            str = (xlWorkSheet.Cells[row, col] as Excel.Range).Text.ToString();
-            xlWorkBook.Close(true, null, null);
-            xlApp.Quit();
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-            return str;
+        public static String ReadCell(int choice, int row, int col) {
+            ClosedXML.Excel.IXLWorksheet data = tData.Worksheet(1); //default selection in order to allow return
+            switch(choice) {
+                case 1: data = tData.Worksheet(1); break;
+                case 2: data = docDB.Worksheet(1); break;
+                case 3: data = patDB.Worksheet(1); break;
+                default: MessageBox.Show("Unauthorized selection");break;
+            }
+            return data.Cell(row, col).GetValue<string>();
         }
-        public static void releaseObject(object obj)
+        public static void WriteCell(int choice, int row, int col,string info) {
+            ClosedXML.Excel.IXLWorksheet data = tData.Worksheet(1); //default selection in order to allow return
+            switch (choice) {
+                case 1: data = tData.Worksheet(1); break;
+                case 2: data = docDB.Worksheet(1); break;
+                case 3: data = patDB.Worksheet(1); break;
+                default: MessageBox.Show("Unauthorized selection"); break;
+            }
+            data.Cell(row, col).SetValue<string>(info);
+        }
+        public static void SaveExcel(int choice)
         {
-            try
+            ClosedXML.Excel.IXLWorksheet data = tData.Worksheet(1); //default selection in order to allow return
+            switch (choice)
             {
-                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj);
-                obj = null;
-            }
-            catch (Exception ex)
-            {
-                obj = null;
-                MessageBox.Show("Unable to release the Object " + ex.ToString());
-            }
-            finally
-            {
-                GC.Collect();
+                case 1: tData.Save(); break;
+                case 2: docDB.Save(); break;
+                case 3: patDB.Save(); break;
+                default: MessageBox.Show("Unauthorized selection"); break;
             }
         }
-        public static void WriteCell()
-        {
-            Excel.Application xlApp;
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            Excel.Range range;
-            object misValue = System.Reflection.Missing.Value;
-            xlApp = new Excel.Application();
-            xlWorkBook = xlApp.Workbooks.Open("PatientData.xls", 0, true, 5, "", "", true, Microsoft.Office.Interop.Excel.XlPlatform.xlWindows, "\t", false, false, 0, true, 1, 0);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            xlWorkSheet.Cells[1, 1] = "ID";
-
-            xlWorkBook.Close(false, misValue, misValue);
-            xlApp.Quit();
-
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-        }
-
         public static bool isValidIsraeliID(string id)
         {
             if (id.Length < 9) return false;
@@ -193,35 +163,52 @@ namespace Tests___Project
             }
             return (counter % 10 == 0);
         }
-        public static void CreateExcel()
-        {
-            Excel.Application xlApp = new Microsoft.Office.Interop.Excel.Application();
-
-            if (xlApp == null)
-            {
-                MessageBox.Show("Excel is not properly installed!!");
-                return;
-            }
-
-
-            Excel.Workbook xlWorkBook;
-            Excel.Worksheet xlWorkSheet;
-            object misValue = System.Reflection.Missing.Value;
-
-            xlWorkBook = xlApp.Workbooks.Add(misValue);
-            xlWorkSheet = (Excel.Worksheet)xlWorkBook.Worksheets.get_Item(1);
-
-            xlWorkBook.SaveAs("PatientData.xls", Excel.XlFileFormat.xlWorkbookNormal, misValue, misValue, misValue, misValue, Excel.XlSaveAsAccessMode.xlExclusive, misValue, misValue, misValue, misValue, misValue);
-            xlWorkBook.Close(true, misValue, misValue);
-            xlApp.Quit();
-
-            Marshal.ReleaseComObject(xlWorkSheet);
-            Marshal.ReleaseComObject(xlWorkBook);
-            Marshal.ReleaseComObject(xlApp);
-
-            MessageBox.Show("Excel file contain the patients data created , you can find the file in your Documents folder");
+        public static void CreateExcel() {
+            XLWorkbook docDB = new XLWorkbook();
+            docDB.Worksheets.Add("DoctorDB.xlsx");
+            XLWorkbook patDB = new XLWorkbook();
+            patDB.Worksheets.Add("PatientDB.xlsx");
+            XLWorkbook tData = new XLWorkbook();
+            tData.Worksheets.Add("TestData.xlsx");
+            docDB.Worksheet(1).Cell("A1").SetValue("User name");
+            docDB.Worksheet(1).Cell("B1").SetValue("Password");
+            docDB.Worksheet(1).Cell("C1").SetValue("ID number");
+            docDB.SaveAs("Resorces/DoctorDB.xlsx");
+            patDB.Worksheet(1).Cell("A1").SetValue("First name");
+            patDB.Worksheet(1).Cell("B1").SetValue("Last name");
+            patDB.Worksheet(1).Cell("C1").SetValue("ID number");
+            patDB.Worksheet(1).Cell("D1").SetValue("Age");
+            patDB.Worksheet(1).Cell("E1").SetValue("Wieght");
+            patDB.Worksheet(1).Cell("F1").SetValue("Height");
+            patDB.Worksheet(1).Cell("G1").SetValue("Sex");
+            patDB.Worksheet(1).Cell("H1").SetValue("WBC");
+            patDB.Worksheet(1).Cell("I1").SetValue("Neut");
+            patDB.Worksheet(1).Cell("J1").SetValue("Lymph");
+            patDB.Worksheet(1).Cell("K1").SetValue("RBC");
+            patDB.Worksheet(1).Cell("L1").SetValue("HCT");
+            patDB.Worksheet(1).Cell("M1").SetValue("Urea");
+            patDB.Worksheet(1).Cell("N1").SetValue("Hb");
+            patDB.Worksheet(1).Cell("O1").SetValue("Crtn");
+            patDB.Worksheet(1).Cell("P1").SetValue("Iron");
+            patDB.Worksheet(1).Cell("Q1").SetValue("HDL");
+            patDB.Worksheet(1).Cell("R1").SetValue("AP");
+            patDB.Worksheet(1).Cell("S1").SetValue("Diagnosis");
+            patDB.Worksheet(1).Cell("T1").SetValue("Treatment");
+            patDB.SaveAs("Resorces/PatientDB.xlsx");
+            tData.Worksheet(1).Cell("A1").SetValue("WBC");
+            tData.Worksheet(1).Cell("B1").SetValue("Neut");
+            tData.Worksheet(1).Cell("C1").SetValue("Lymph");
+            tData.Worksheet(1).Cell("D1").SetValue("RBC");
+            tData.Worksheet(1).Cell("E1").SetValue("HCT");
+            tData.Worksheet(1).Cell("F1").SetValue("Urea");
+            tData.Worksheet(1).Cell("G1").SetValue("Hb");
+            tData.Worksheet(1).Cell("H1").SetValue("Crtn");
+            tData.Worksheet(1).Cell("I1").SetValue("Iron");
+            tData.Worksheet(1).Cell("J1").SetValue("HDL");
+            tData.Worksheet(1).Cell("K1").SetValue("AP");
+            tData.SaveAs("Resorces/TestData.xlsx");
         }
-    
+
         public static bool isValidUsername(string username)
         {
             if (username.Length < 6 && username.Length > 8) return false;

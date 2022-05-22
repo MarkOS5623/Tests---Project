@@ -73,7 +73,7 @@ namespace Tests___Project
             Patient_Info.Items.Add("First Name: " + Zero.getFname());
             Patient_Info.Items.Add("Last Name: " + Zero.getLName());
             Patient_Info.Items.Add("ID Number: " + Zero.getId());
-            if(Zero.getMale())
+            if(Zero.getSex())
                 Patient_Info.Items.Add("Sex: Male");
             else Patient_Info.Items.Add("Sex: Female");
             Patient_Info.Items.Add("Age: " + Zero.getAge() + " years old");
@@ -175,7 +175,41 @@ namespace Tests___Project
 
         private void ExcelButton_Click(object sender, EventArgs e)
         {
-
+            Patient Zero = PatientList[0];
+            BloodTest bt = Zero.getresults();
+            int i = 1;
+            bool Flag = false;
+            while (Flag == false) {
+                if (Utility.ReadCell(3, i, 1) == "")
+                {
+                    Utility.WriteCell(3, i, 1, Zero.getFname());
+                    Utility.WriteCell(3, i, 2, Zero.getLName());
+                    Utility.WriteCell(3, i, 3, Zero.getId());
+                    Utility.WriteCell(3, i, 4, Convert.ToString(Zero.getAge()));
+                    Utility.WriteCell(3, i, 5, Convert.ToString(Zero.getWeight()));
+                    Utility.WriteCell(3, i, 6, Convert.ToString(Zero.getHeight()));
+                    if (Zero.getSex())
+                        Utility.WriteCell(3, i, 7, "Male");
+                    else
+                        Utility.WriteCell(3, i, 7, "Female");
+                    Utility.WriteCell(3, i, 8, Convert.ToString(bt.getWBC()));
+                    Utility.WriteCell(3, i, 9, Convert.ToString(bt.getNeutrophil()));
+                    Utility.WriteCell(3, i, 10, Convert.ToString(bt.getLymphocytes()));
+                    Utility.WriteCell(3, i, 11, Convert.ToString(bt.getRBC()));
+                    Utility.WriteCell(3, i, 12, Convert.ToString(bt.getHCT()));
+                    Utility.WriteCell(3, i, 13, Convert.ToString(bt.getUrea()));
+                    Utility.WriteCell(3, i, 14, Convert.ToString(bt.getHemoglobin()));
+                    Utility.WriteCell(3, i, 15, Convert.ToString(bt.getCrtn()));
+                    Utility.WriteCell(3, i, 16, Convert.ToString(bt.getIron()));
+                    Utility.WriteCell(3, i, 17, Convert.ToString(bt.getHDL()));
+                    Utility.WriteCell(3, i, 18, Convert.ToString(bt.getAP()));
+                    Utility.WriteCell(3, i, 19, Zero.getIllness());
+                    Utility.WriteCell(3, i, 20, Zero.getTreatment());
+                    Utility.SaveExcel(3);
+                    Flag = true;
+                }
+                else i++;
+            }
         }
     }
 }

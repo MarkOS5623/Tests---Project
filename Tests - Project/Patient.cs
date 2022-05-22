@@ -53,7 +53,7 @@ namespace Tests___Project
         public float getWeight() { return _Weight; }
         public float getHeight() { return _Height; }
         public BloodTest getresults() { return _results; }
-        public bool getMale() { return _Male; }
+        public bool getSex() { return _Male; }
         public void setResults(BloodTest results) { _results = results; }
         public void setTreatment(String treatment) { _Treatment = treatment; }
         public void setIllness(String illeness) { _Illness = illeness; }

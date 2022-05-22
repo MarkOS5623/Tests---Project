@@ -1,5 +1,5 @@
 using System.Runtime.InteropServices;
-using Excel = Microsoft.Office.Interop.Excel;
+
 namespace Tests___Project
 {
     public partial class LoginForm : Form
@@ -10,7 +10,10 @@ namespace Tests___Project
             DoctorList = new List<Doctor>();
             DoctorList.Add(new Doctor("Admin45", "Admin45!", "315126201"));
             Utility.CreateExcel();
-            Utility.WriteCell();
+            Utility.WriteCell(2, 2, 1, "Admin45");
+            Utility.WriteCell(2, 2, 2, "Admin45!");
+            Utility.WriteCell(2, 2, 3, "315126201");
+            Utility.SaveExcel(2);
             InitializeComponent();
         }
         

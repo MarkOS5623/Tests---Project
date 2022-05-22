@@ -26,15 +26,33 @@ namespace Tests___Project
                 MessageBox.Show("Please fill the whole form.");
             else
             {
-                Doctor General = new Doctor(UsernameBox.Text, PasswordBox.Text, IDBox.Text);
                 if (this.inputTester())
                 {
+                    Doctor General = new Doctor(UsernameBox.Text, PasswordBox.Text, IDBox.Text);
+                    ExcelWriter(General);
                     this.Hide();
                     LoginForm.DoctorList.Add(General);
                     index = LoginForm.DoctorList.Count - 1;
                     f.Closed += (s, args) => this.Close();
                     f.Show();
                 }
+            }
+        }
+        private void ExcelWriter(Doctor obj)
+        {
+            int i = 1;
+            bool Flag = false;
+            while (Flag == false)
+            {
+                if (Utility.ReadCell(3, i, 1) == "")
+                {
+                    Utility.WriteCell(2, 2, 1, obj.getUsername());
+                    Utility.WriteCell(2, 2, 2, obj.getPassword());
+                    Utility.WriteCell(2, 2, 3, obj.getID());
+                    Utility.SaveExcel(2);
+                    Flag = true;
+                }
+                else i++;
             }
         }
         protected override void OnPaint(PaintEventArgs e)

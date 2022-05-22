@@ -176,7 +176,7 @@ namespace Tests___Project
                 if (Smoker.Checked || Asthma.Checked) { }
                 else if (!Alreadyin("Blood cell problems", Diagnostics)) Diagnostics.Add("Blood cell problems"); }
 
-            if (MainPage.PatientList[0].getMale()) {
+            if (MainPage.PatientList[0].getSex()) {
                 if (bloodTest.getHCT() < 37) {
                     if (!Alreadyin("Anemia", Diagnostics))
                         Diagnostics.Add("Anemia");
@@ -201,7 +201,7 @@ namespace Tests___Project
                 if (!Alreadyin("Dehydration", Diagnostics))
                     Diagnostics.Add("Dehydration"); }
 
-            if (MainPage.PatientList[0].getMale()) {
+            if (MainPage.PatientList[0].getSex()) {
                 if (bloodTest.getHemoglobin() < 12) {
                     if (!Alreadyin("Anemia", Diagnostics))
                         Diagnostics.Add("Anemia");
@@ -266,7 +266,7 @@ namespace Tests___Project
                 }
             }
 
-            if (MainPage.PatientList[0].getMale()) {
+            if (MainPage.PatientList[0].getSex()) {
                 if (bloodTest.getIron() < 60) {
                     if (Bleeding.Checked && (!Alreadyin("Bleeding", Diagnostics))) Diagnostics.Add("Bleeding"); }
                 if (bloodTest.getIron() > 160) {
@@ -279,7 +279,7 @@ namespace Tests___Project
                     if (!Alreadyin("Iron poisoning", Diagnostics))
                         Diagnostics.Add("Iron poisoning"); }
 
-            if (MainPage.PatientList[0].getMale()) {
+            if (MainPage.PatientList[0].getSex()) {
                 if (bloodTest.getHDL() < 29) {
                     if (!Alreadyin("Hyperlipidemia", Diagnostics))
                         Diagnostics.Add("Hyperlipidemia");
