@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ClosedXML.Excel;
 
 namespace Tests___Project
 {
@@ -91,14 +92,38 @@ namespace Tests___Project
         {
             if (PatientList.Count == 1 && flag == false)
             {
-                Questionnaire f = new Questionnaire();
+                /*Questionnaire f = new Questionnaire();
                 BloodTest bloodTest = Utility.ExcelToBlood();
                 PatientList[0].setResults(bloodTest);
                 flag = true;
                 f.DiseaseInator();
-                Utility.BloodResults();
-                
-                flag3 = true; // Prevents doubling of diagnostics
+                Utility.BloodResults();*/
+                using (OpenFileDialog odf = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx", Multiselect = false})
+                    if(odf.ShowDialog() == DialogResult.OK)
+                    {
+                        using (XLWorkbook WB = new XLWorkbook(odf.FileName))
+                        {
+                            ClosedXML.Excel.IXLWorksheet data = WB.Worksheet(1);
+                            Questionnaire f = new Questionnaire();
+                            int WBC = Convert.ToInt32(data.Cell(2, 1).GetValue<double>());
+                            float Neutrophil = Convert.ToSingle(data.Cell(2, 2).GetValue<double>());
+                            float Lymphocytes = Convert.ToSingle(data.Cell(2, 3).GetValue<double>());
+                            float RBC = Convert.ToSingle(data.Cell(2, 4).GetValue<double>());
+                            float HCT = Convert.ToSingle(data.Cell(2, 5).GetValue<double>());
+                            float Urea = Convert.ToSingle(data.Cell(2, 6).GetValue<double>());
+                            float Hemoglobin = Convert.ToSingle(data.Cell(2, 7).GetValue<double>());
+                            float Crtn = Convert.ToSingle(data.Cell(2, 8).GetValue<double>());
+                            int Iron = Convert.ToInt32(data.Cell(2, 9).GetValue<double>());
+                            float HDL = Convert.ToSingle(data.Cell(2, 10).GetValue<double>());
+                            int AP = Convert.ToInt32(data.Cell(2, 11).GetValue<double>());
+                            BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
+                            PatientList[0].setResults(bloodTest);
+                            flag = true;
+                            f.DiseaseInator();
+                            Utility.BloodResults();
+                            flag3 = true; // Prevents doubling of diagnostics
+                        }
+                    }
             }
             else if (flag == true) MessageBox.Show("The patient's blood test has already been imported!!");
             else MessageBox.Show("No patient has been addmited!!");

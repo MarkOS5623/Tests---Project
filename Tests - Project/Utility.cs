@@ -164,12 +164,21 @@ namespace Tests___Project {
             return (counter % 10 == 0);
         }
         public static void CreateExcel() {
-            XLWorkbook docDB = new XLWorkbook();
-            docDB.Worksheets.Add("DoctorDB.xlsx");
-            XLWorkbook patDB = new XLWorkbook();
-            patDB.Worksheets.Add("PatientDB.xlsx");
-            XLWorkbook tData = new XLWorkbook();
-            tData.Worksheets.Add("TestData.xlsx");
+            if (File.Exists("Resorces/DoctorDB.xlsx") == false)
+            {
+                XLWorkbook docDB = new XLWorkbook();
+                docDB.Worksheets.Add("DoctorDB.xlsx");
+            }
+            if (File.Exists("Resorces/PatientDB.xlsx") == false)
+            {
+                XLWorkbook patDB = new XLWorkbook();
+                patDB.Worksheets.Add("PatientDB.xlsx");
+            }
+            if (File.Exists("Resorces/TestData.xlsx") == false)
+            {
+                XLWorkbook tData = new XLWorkbook();
+                tData.Worksheets.Add("TestData.xlsx");
+            }
             docDB.Worksheet(1).Cell("A1").SetValue("User name");
             docDB.Worksheet(1).Cell("B1").SetValue("Password");
             docDB.Worksheet(1).Cell("C1").SetValue("ID number");
