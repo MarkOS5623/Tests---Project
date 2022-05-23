@@ -168,16 +168,19 @@ namespace Tests___Project {
             {
                 XLWorkbook docDB = new XLWorkbook();
                 docDB.Worksheets.Add("DoctorDB.xlsx");
+                docDB.SaveAs("Resorces/DoctorDB.xlsx");
             }
             if (File.Exists("Resorces/PatientDB.xlsx") == false)
             {
                 XLWorkbook patDB = new XLWorkbook();
                 patDB.Worksheets.Add("PatientDB.xlsx");
+                patDB.SaveAs("Resorces/PatientDB.xlsx");
             }
             if (File.Exists("Resorces/TestData.xlsx") == false)
             {
                 XLWorkbook tData = new XLWorkbook();
                 tData.Worksheets.Add("TestData.xlsx");
+                tData.SaveAs("Resorces/TestData.xlsx");
             }
             docDB.Worksheet(1).Cell("A1").SetValue("User name");
             docDB.Worksheet(1).Cell("B1").SetValue("Password");
@@ -269,6 +272,44 @@ namespace Tests___Project {
             SpecialNum = password.Length - IntNum - LetterNum;
             return (IntNum > 0 && LetterNum > 0 && SpecialNum > 0);
         }
-
+        public static void PatientToExcel()
+        {
+            Patient Zero = MainPage.PatientList[0];
+            BloodTest bt = Zero.getresults();
+            int i = 1;
+            bool Flag = false;
+            while (Flag == false)
+            {
+                if (ReadCell(3, i, 1) == "")
+                {
+                    WriteCell(3, i, 1, Zero.getFname());
+                    WriteCell(3, i, 2, Zero.getLName());
+                    WriteCell(3, i, 3, Zero.getId());
+                    WriteCell(3, i, 4, Convert.ToString(Zero.getAge()));
+                    WriteCell(3, i, 5, Convert.ToString(Zero.getWeight()));
+                    WriteCell(3, i, 6, Convert.ToString(Zero.getHeight()));
+                    if (Zero.getSex())
+                        WriteCell(3, i, 7, "Male");
+                    else
+                        WriteCell(3, i, 7, "Female");
+                    WriteCell(3, i, 8, Convert.ToString(bt.getWBC()));
+                    WriteCell(3, i, 9, Convert.ToString(bt.getNeutrophil()));
+                    WriteCell(3, i, 10, Convert.ToString(bt.getLymphocytes()));
+                    WriteCell(3, i, 11, Convert.ToString(bt.getRBC()));
+                    WriteCell(3, i, 12, Convert.ToString(bt.getHCT()));
+                    WriteCell(3, i, 13, Convert.ToString(bt.getUrea()));
+                    WriteCell(3, i, 14, Convert.ToString(bt.getHemoglobin()));
+                    WriteCell(3, i, 15, Convert.ToString(bt.getCrtn()));
+                    WriteCell(3, i, 16, Convert.ToString(bt.getIron()));
+                    WriteCell(3, i, 17, Convert.ToString(bt.getHDL()));
+                    WriteCell(3, i, 18, Convert.ToString(bt.getAP()));
+                    WriteCell(3, i, 19, Zero.getIllness());
+                    WriteCell(3, i, 20, Zero.getTreatment());
+                    SaveExcel(3);
+                    Flag = true;
+                }
+                else i++;
+            }
+        }
     }
 }

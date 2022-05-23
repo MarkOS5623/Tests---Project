@@ -41,7 +41,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.InfoButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ExcelButton = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -190,27 +189,12 @@
             this.panel1.Size = new System.Drawing.Size(237, 146);
             this.panel1.TabIndex = 19;
             // 
-            // ExcelButton
-            // 
-            this.ExcelButton.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ExcelButton.Font = new System.Drawing.Font("Yu Gothic UI", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.ExcelButton.ForeColor = System.Drawing.Color.Red;
-            this.ExcelButton.Location = new System.Drawing.Point(210, 91);
-            this.ExcelButton.Margin = new System.Windows.Forms.Padding(5);
-            this.ExcelButton.Name = "ExcelButton";
-            this.ExcelButton.Size = new System.Drawing.Size(180, 100);
-            this.ExcelButton.TabIndex = 20;
-            this.ExcelButton.Text = "Export Patient to Excel";
-            this.ExcelButton.UseVisualStyleBackColor = false;
-            this.ExcelButton.Click += new System.EventHandler(this.ExcelButton_Click);
-            // 
             // MainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(13F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(957, 801);
-            this.Controls.Add(this.ExcelButton);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.CloseButton);
@@ -247,6 +231,5 @@
         private Button button1;
         private Button InfoButton;
         private Panel panel1;
-        private Button ExcelButton;
     }
 }

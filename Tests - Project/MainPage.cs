@@ -16,10 +16,10 @@ namespace Tests___Project
         public static List<Patient> PatientList = new List<Patient>();
         public static List<String> BloodTests = new List<String>();
         //flags for checks
-        public static bool flag = false;
-        public static bool flag2 = false;
-        public static bool flag3 = false;
-        public static bool flag4 = false;
+        public static bool BloodFlag = false;
+        public static bool SymptomsFlag = false;
+        public static bool Diagnosticsflag = false;
+        public static bool QuestionnaireFlag = false;
 
         public static Dictionary<String, String> Dict = new Dictionary<String, String>() {   
             { "Anemia", "Two 10mg B12 pills a day for a month"}, { "Bleeding", "Go to the Hospital" },
@@ -47,15 +47,15 @@ namespace Tests___Project
 
         private void QuestionButton_Click(object sender, EventArgs e)
         {
-            if (PatientList.Count == 1 && flag4 == false)
+            if (PatientList.Count == 1 && QuestionnaireFlag == false)
             {
                 Questionnaire f = new Questionnaire();
                 f.ShowDialog();
-                
-                flag2 = true; // Prevents doubling of symptoms
-                flag4 = true;
+
+                SymptomsFlag = true; // Prevents doubling of symptoms
+                QuestionnaireFlag = true;
             }
-            else if (flag4 == true) MessageBox.Show("The patient has already filled the form!!");
+            else if (QuestionnaireFlag == true) MessageBox.Show("The patient has already filled the form!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
@@ -90,42 +90,41 @@ namespace Tests___Project
 
         private void BloodButton_Click(object sender, EventArgs e)
         {
-            if (PatientList.Count == 1 && flag == false)
+            if (PatientList.Count == 1 && BloodFlag == false)
             {
-                /*Questionnaire f = new Questionnaire();
-                BloodTest bloodTest = Utility.ExcelToBlood();
-                PatientList[0].setResults(bloodTest);
-                flag = true;
-                f.DiseaseInator();
-                Utility.BloodResults();*/
                 using (OpenFileDialog odf = new OpenFileDialog() { Filter = "Excel Workbook|*.xlsx", Multiselect = false})
                     if(odf.ShowDialog() == DialogResult.OK)
                     {
                         using (XLWorkbook WB = new XLWorkbook(odf.FileName))
                         {
                             ClosedXML.Excel.IXLWorksheet data = WB.Worksheet(1);
-                            Questionnaire f = new Questionnaire();
-                            int WBC = Convert.ToInt32(data.Cell(2, 1).GetValue<double>());
-                            float Neutrophil = Convert.ToSingle(data.Cell(2, 2).GetValue<double>());
-                            float Lymphocytes = Convert.ToSingle(data.Cell(2, 3).GetValue<double>());
-                            float RBC = Convert.ToSingle(data.Cell(2, 4).GetValue<double>());
-                            float HCT = Convert.ToSingle(data.Cell(2, 5).GetValue<double>());
-                            float Urea = Convert.ToSingle(data.Cell(2, 6).GetValue<double>());
-                            float Hemoglobin = Convert.ToSingle(data.Cell(2, 7).GetValue<double>());
-                            float Crtn = Convert.ToSingle(data.Cell(2, 8).GetValue<double>());
-                            int Iron = Convert.ToInt32(data.Cell(2, 9).GetValue<double>());
-                            float HDL = Convert.ToSingle(data.Cell(2, 10).GetValue<double>());
-                            int AP = Convert.ToInt32(data.Cell(2, 11).GetValue<double>());
-                            BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
-                            PatientList[0].setResults(bloodTest);
-                            flag = true;
-                            f.DiseaseInator();
-                            Utility.BloodResults();
-                            flag3 = true; // Prevents doubling of diagnostics
+                            if (data.Cell(1, 1).GetValue<String>() != "WBC")
+                                MessageBox.Show("The excel file doesn't contain blood test results! Please choose the currect file!");
+                            else
+                            {
+                                Questionnaire f = new Questionnaire();
+                                int WBC = Convert.ToInt32(data.Cell(2, 1).GetValue<double>());
+                                float Neutrophil = Convert.ToSingle(data.Cell(2, 2).GetValue<double>());
+                                float Lymphocytes = Convert.ToSingle(data.Cell(2, 3).GetValue<double>());
+                                float RBC = Convert.ToSingle(data.Cell(2, 4).GetValue<double>());
+                                float HCT = Convert.ToSingle(data.Cell(2, 5).GetValue<double>());
+                                float Urea = Convert.ToSingle(data.Cell(2, 6).GetValue<double>());
+                                float Hemoglobin = Convert.ToSingle(data.Cell(2, 7).GetValue<double>());
+                                float Crtn = Convert.ToSingle(data.Cell(2, 8).GetValue<double>());
+                                int Iron = Convert.ToInt32(data.Cell(2, 9).GetValue<double>());
+                                float HDL = Convert.ToSingle(data.Cell(2, 10).GetValue<double>());
+                                int AP = Convert.ToInt32(data.Cell(2, 11).GetValue<double>());
+                                BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
+                                PatientList[0].setResults(bloodTest);
+                                BloodFlag = true;
+                                f.DiseaseInator();
+                                Utility.BloodResults();
+                                Diagnosticsflag = true; // Prevents doubling of diagnostics
+                            }
                         }
                     }
             }
-            else if (flag == true) MessageBox.Show("The patient's blood test has already been imported!!");
+            else if (BloodFlag == true) MessageBox.Show("The patient's blood test has already been imported!!");
             else MessageBox.Show("No patient has been addmited!!");
         }
 
@@ -138,7 +137,7 @@ namespace Tests___Project
                 InitializeInfo();}
             else MessageBox.Show("Only one patient can be admited at the time!!");
         }
-
+        
         private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -157,10 +156,28 @@ namespace Tests___Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            DiagnosticForm f = new DiagnosticForm();
-            f.ShowDialog();
-            Patient_Info.Items.Clear();
-            InitializeInfo();
+            int n = PatientList.Count;
+            if (QuestionnaireFlag == true && BloodFlag == true && n > 0)
+            {
+                DiagnosticForm f = new DiagnosticForm();
+                f.ShowDialog();
+                Patient_Info.Items.Clear();
+                InitializeInfo();
+                Utility.PatientToExcel();
+            }
+            else if (n == 0) { 
+                MessageBox.Show("No patient has been admited!!");
+                return;
+            }
+
+            else if (QuestionnaireFlag == false) {
+                MessageBox.Show("The patient hasn't filled the question form!");
+                return;
+            }
+            else if (BloodFlag == false) { 
+                MessageBox.Show("The patient's blood test hasn't been entered!");
+                return;
+            }
         }
 
         
@@ -187,10 +204,10 @@ namespace Tests___Project
             Patient_Info.Items.Clear();
             Questionnaire.Diagnostics.Clear();
             Questionnaire.Symptoms.Clear();
-            flag = false;
-            flag2 = false;
-            flag3 = false;
-            flag4 = false;
+            BloodFlag = false;
+            SymptomsFlag = false;
+            Diagnosticsflag = false;
+            QuestionnaireFlag = false;
         }
 
         private void Patient_Info_SelectedIndexChanged(object sender, EventArgs e)
@@ -200,41 +217,7 @@ namespace Tests___Project
 
         private void ExcelButton_Click(object sender, EventArgs e)
         {
-            Patient Zero = PatientList[0];
-            BloodTest bt = Zero.getresults();
-            int i = 1;
-            bool Flag = false;
-            while (Flag == false) {
-                if (Utility.ReadCell(3, i, 1) == "")
-                {
-                    Utility.WriteCell(3, i, 1, Zero.getFname());
-                    Utility.WriteCell(3, i, 2, Zero.getLName());
-                    Utility.WriteCell(3, i, 3, Zero.getId());
-                    Utility.WriteCell(3, i, 4, Convert.ToString(Zero.getAge()));
-                    Utility.WriteCell(3, i, 5, Convert.ToString(Zero.getWeight()));
-                    Utility.WriteCell(3, i, 6, Convert.ToString(Zero.getHeight()));
-                    if (Zero.getSex())
-                        Utility.WriteCell(3, i, 7, "Male");
-                    else
-                        Utility.WriteCell(3, i, 7, "Female");
-                    Utility.WriteCell(3, i, 8, Convert.ToString(bt.getWBC()));
-                    Utility.WriteCell(3, i, 9, Convert.ToString(bt.getNeutrophil()));
-                    Utility.WriteCell(3, i, 10, Convert.ToString(bt.getLymphocytes()));
-                    Utility.WriteCell(3, i, 11, Convert.ToString(bt.getRBC()));
-                    Utility.WriteCell(3, i, 12, Convert.ToString(bt.getHCT()));
-                    Utility.WriteCell(3, i, 13, Convert.ToString(bt.getUrea()));
-                    Utility.WriteCell(3, i, 14, Convert.ToString(bt.getHemoglobin()));
-                    Utility.WriteCell(3, i, 15, Convert.ToString(bt.getCrtn()));
-                    Utility.WriteCell(3, i, 16, Convert.ToString(bt.getIron()));
-                    Utility.WriteCell(3, i, 17, Convert.ToString(bt.getHDL()));
-                    Utility.WriteCell(3, i, 18, Convert.ToString(bt.getAP()));
-                    Utility.WriteCell(3, i, 19, Zero.getIllness());
-                    Utility.WriteCell(3, i, 20, Zero.getTreatment());
-                    Utility.SaveExcel(3);
-                    Flag = true;
-                }
-                else i++;
-            }
+
         }
     }
 }
