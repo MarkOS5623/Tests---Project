@@ -152,7 +152,8 @@ namespace Tests___Project {
         }
         public static bool isValidIsraeliID(string id)
         {
-            if (id.Length < 9) return false;
+            if (id.Length < 9) 
+                return false;
             int counter = 0, incNum;
             var i = 0;
             for (i = 0; i < 9; i++)
