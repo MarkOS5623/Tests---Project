@@ -15,15 +15,15 @@ namespace Tests___Project {
         public static void BloodResults() {
             BloodTest bloodTest = MainPage.PatientList[0].getresults();
 
-            if (bloodTest.getWBC() < 4500) MainPage.BloodTests.Add(bloodTest.getWBC() + " - LOW");
+            if (bloodTest.getWBC() < 4500) MainPage.BloodTests.Add("WBC - " + bloodTest.getWBC() + " - LOW");
 
-            else if (bloodTest.getWBC() > 11000) MainPage.BloodTests.Add(bloodTest.getWBC() + " - HIGH");
+            else if (bloodTest.getWBC() > 11000) MainPage.BloodTests.Add("WBC - " + bloodTest.getWBC() + " - HIGH");
 
             else MainPage.BloodTests.Add("WBC - " + bloodTest.getWBC() + " - Normal");
 
-            if (bloodTest.getNeutrophil() < 28) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + "% - LOW");
+            if (bloodTest.getNeutrophil() < 28) MainPage.BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + "% - LOW");
 
-            else if (bloodTest.getNeutrophil() > 54) MainPage.BloodTests.Add(bloodTest.getNeutrophil() + "% - HIGH");
+            else if (bloodTest.getNeutrophil() > 54) MainPage.BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + "% - HIGH");
 
             else MainPage.BloodTests.Add("Neutrophil - " + bloodTest.getNeutrophil() + "% - Normal");
 
