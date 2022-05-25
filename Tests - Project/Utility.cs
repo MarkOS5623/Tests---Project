@@ -106,16 +106,71 @@ namespace Tests___Project {
 
         public static BloodTest ExcelToBlood() {
             int WBC = Convert.ToInt32(ReadCell(1, 2, 1));
+            if (WBC < 0)
+            {
+                MessageBox.Show("Invalid WBC value!");
+                return null;
+            }
             float Neutrophil = Convert.ToSingle(ReadCell(1, 2, 2));
+            if (Neutrophil < 0)
+            {
+                MessageBox.Show("Invalid Neutrophil value!");
+                return null;
+            }
             float Lymphocytes = Convert.ToSingle(ReadCell(1, 2, 3));
+            if (Lymphocytes < 0)
+            {
+                MessageBox.Show("Invalid Lymphocytes value!");
+                return null;
+            }
             float RBC = Convert.ToSingle(ReadCell(1, 2, 4));
+            if (RBC < 0)
+            {
+                MessageBox.Show("Invalid RBC value!");
+                return null;
+            }
             float HCT = Convert.ToSingle(ReadCell(1, 2, 5));
+            if (HCT < 0)
+            {
+                MessageBox.Show("Invalid HCT value!");
+                return null;
+            }
             float Urea = Convert.ToSingle(ReadCell(1, 2, 6));
+            if (Urea < 0)
+            {
+                MessageBox.Show("Invalid Urea value!");
+                return null;
+            }
             float Hemoglobin = Convert.ToSingle(ReadCell(1, 2, 7));
+            if (Hemoglobin < 0)
+            {
+                MessageBox.Show("Invalid Hemoglobin value!");
+                return null;
+            }
             float Crtn = Convert.ToSingle(ReadCell(1, 2, 8));
+            if (Crtn < 0)
+            {
+                MessageBox.Show("Invalid Crtn value!");
+                return null;
+            }
             int Iron = Convert.ToInt32(ReadCell(1, 2, 9));
+            if (Iron < 0)
+            {
+                MessageBox.Show("Invalid Iron value!");
+                return null;
+            }
             float HDL = Convert.ToSingle(ReadCell(1, 2, 10));
+            if (HDL < 0)
+            {
+                MessageBox.Show("Invalid HDL value!");
+                return null;
+            }
             int AP = Convert.ToInt32(ReadCell(1, 2, 11));
+            if (AP < 0)
+            {
+                MessageBox.Show("Invalid AP value!");
+                return null;
+            }
             BloodTest bloodTest = new BloodTest(WBC, Neutrophil, Lymphocytes, RBC, HCT, Urea, Hemoglobin, Iron, Crtn, HDL, AP);
             return bloodTest;
         }
